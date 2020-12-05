@@ -8,25 +8,34 @@
 /* S1 Form Stlying */
 
 
-/* S1 Help Box STYLING */
+/* **** S1 Help Box STYLING **** */
 
 .sHelp {
   color: #7FDBFF;
   background-color: black;
 }
 
-.sHelp:hover {
+.sHelp:hover, #close:hover {
   cursor: pointer;
 }
 
 .sInformation {
-  display: none;
   background-color: #303030;
-  width: 400px;
-  height: 200px;
+  width: 500px;
+  height: 125px;
   color: white;
+  position: relative;
 }
 
 li {
   margin-left: 20px;
+}
+
+/* Close button functionality */
+
+#close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  transform: rotate(45deg);
 }
