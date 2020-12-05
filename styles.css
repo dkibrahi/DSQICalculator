@@ -10,16 +10,17 @@
 
 /* S1 Help Box STYLING */
 
-#s1Help {
+.sHelp {
   color: #7FDBFF;
   background-color: black;
 }
 
-#s1Help:hover {
+.sHelp:hover {
   cursor: pointer;
 }
 
-#s1Information {
+.sInformation {
+  display: none;
   background-color: #303030;
   width: 400px;
   height: 200px;
