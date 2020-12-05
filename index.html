@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type = 'text/javascript' src="main.js"></script>
     <title>DSQI Calculator</title>
 </head>
 <body>
   <h1>DSQI Calculator</h1>
   <h2>S-Values</h2>
   <form>
-    <input type="text" id = 's1' placeholder="Enter S1 Value Here">
-    <input type="text" id = 's2' placeholder="Enter S2 Value Here">
-    <input type="text" id = 's3' placeholder="Enter S3 Value Here">
-    <input type="text" id = 's4' placeholder="Enter S4 Value Here">
-    <input type="text" id = 's5' placeholder="Enter S5 Value Here">
-    <input type="text" id = 's6' placeholder="Enter S6 Value Here">
-    <input type="text" id = 's7' placeholder="Enter S7 Value Here">
-    <input type="checkbox" id = 'isDinct'>
+    <span id = 's1Help'>S1</span>
+    <input type="text" id = 's1' placeholder="Enter S1 Value Here"><br>
+    <input type="text" id = 's2' placeholder="Enter S2 Value Here"><br>
+    <input type="text" id = 's3' placeholder="Enter S3 Value Here"><br>
+    <input type="text" id = 's4' placeholder="Enter S4 Value Here"><br>
+    <input type="text" id = 's5' placeholder="Enter S5 Value Here"><br>
+    <input type="text" id = 's6' placeholder="Enter S6 Value Here"><br>
+    <input type="text" id = 's7' placeholder="Enter S7 Value Here"><br>
+    <input type="checkbox" id = 'isDistinct'>
   </form>
 
-  <br><button type="button"><a href = "finalCalculation.html">Next Page</a></button>
+  <!-- <br><button type="button"><a href = "finalCalculation.html" id="nextPageButton">Next Page</a></button> -->
+  <br><button type="button" id="nextPageButton">Next Page</button>
 
 </body>
 </html>
