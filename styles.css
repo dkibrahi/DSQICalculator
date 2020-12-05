@@ -3,6 +3,29 @@
   margin: 0;
 }
 
+/* MAIN PAGE STYLING  */
+
+/* S1 Form Stlying */
+
+
+/* S1 Help Box STYLING */
+
 #s1Help {
-  background-color: #7FDBFF;
+  color: #7FDBFF;
+  background-color: black;
+}
+
+#s1Help:hover {
+  cursor: pointer;
+}
+
+#s1Information {
+  background-color: #303030;
+  width: 400px;
+  height: 200px;
+  color: white;
+}
+
+li {
+  margin-left: 20px;
 }
