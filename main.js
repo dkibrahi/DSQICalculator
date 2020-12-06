@@ -36,21 +36,7 @@ $(document).ready(function() {
 
     ]; // Store rules that each s value must abide by
 
-    // Functions
-
-    // Function that is used to collect all the user inputted s values
-
-    function collectSValues() {
-        var s1Value = $("#s1Val").val();
-        var s2Value = $("#s2Val").val();
-        var s3Value = $("#s3Val").val();
-        var s4Value = $("#s4Val").val();
-        var s5Value = $("#s5Val").val();
-        var s6Value = $("#s6Val").val();
-        var s7Value = $("#s7Val").val();
-        return [s1Value, s2Value, s3Value, s4Value, s5Value, s6Value, s7Value];
-    }
-
+    // ***** FUNCTIONS *****
 
     /// Function that is used to find which of the sValue buttons the user clicked
 
@@ -85,6 +71,61 @@ $(document).ready(function() {
 
     }
 
+    // Function that is used to collect all the user inputted s values
+
+    function collectSValues() {
+        var s1Value = $("#s1Val").val();
+        var s2Value = $("#s2Val").val();
+        var s3Value = $("#s3Val").val();
+        var s4Value = $("#s4Val").val();
+        var s5Value = $("#s5Val").val();
+        var s6Value = $("#s6Val").val();
+        var s7Value = $("#s7Val").val();
+        return [s1Value, s2Value, s3Value, s4Value, s5Value, s6Value, s7Value];
+    }
+
+    // Function that makes sure no empty user values are passed
+
+    function emptyChecker(currVal) {
+      if (!currVal) {
+        return false; // If the value that is passed in is invalid or empty, return false right away
+      }
+
+      else {
+        return true;
+      }
+
+    }
+
+
+    // Function that is used to make sure that only valid numbers are used.
+
+    function numChecker(currVal) {
+      var validNums = '123456789';
+      var index = 0;
+      for (index; index < currVal.length; index++) {
+        if (!validNums.includes(currVal[index])) {
+            return false; // If one of the values in the input box isn't a number, return false
+        }
+      }
+
+      return true; // If all numbers are valid, return true
+
+    }
+
+
+    // Change color of box if it isn't valid
+
+    function boxColorChanger(sID, isValid) {
+      if (!isValid) {
+        $("#" + sID).css('border-color', 'red');
+      }
+
+      else {
+        $("#" + sID).css('border-color', ""); // If the value is valid, then keep the box its regular color
+      }
+    }
+
 
     // Event Functions
 
@@ -112,11 +153,26 @@ $(document).ready(function() {
 
     });
 
+    $("input").on("input", function() {
+      var currID = String(($(this).attr('id'))); // Get the current id value
+      var userValue = $("#" + currID).val(); // Get the current user value
+      var isValid = emptyChecker(userValue) && numChecker(userValue); // Call the value checker functions to see if s-value is valid
+      boxColorChanger(currID, isValid);
+
+    });
+
 
     $("#nextPageButton").click(function() {
         var sValues = collectSValues(); // Get all the s1values from the user
         var isDistinct = $("#isDistinct").is(':checked'); // Check if the user has checked the isDistinct box
     });
+
+    tippy('.sHelp', {
+        content: 'Click for help!',
+        placement: 'left',
+        animation: 'scale',
+        inertia: true,
+      });
 
 
 });

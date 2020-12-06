@@ -3,16 +3,35 @@
   margin: 0;
 }
 
-/* MAIN PAGE STYLING  */
+/* ****** MAIN PAGE STYLING *****  */
 
-/* S1 Form Stlying */
+/* **** S1 FORM STYLING **** */
+
+.main {
+  text-align: center;
+}
+
+#titleText {
+  padding: 1vw 0;
+}
+
+#headerText {
+  padding-bottom: 2vw;
+}
+
+input {
+  margin: 1vw 0;
+  padding: 0.5vw 0;
+  text-align: center;
+}
 
 
 /* **** S1 Help Box STYLING **** */
 
 .sHelp {
   color: #7FDBFF;
-  background-color: black;
+  border: 1px solid black;
+  padding: 0.5vw;
 }
 
 .sHelp:hover, #close:hover {
