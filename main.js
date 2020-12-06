@@ -133,13 +133,13 @@ $(document).ready(function() {
           alert("Something went wrong.");
         }
 
-        var s1Val = sValues[0];
-        var s2Val = sValues[1];
-        var s3Val = sValues[2];
-        var s4Val = sValues[3];
-        var s5Val = sValues[4];
-        var s6Val = sValues[5];
-        var s7Val = sValues[6];
+        var s1Val = parseInt(sValues[0]);
+        var s2Val = parseInt(sValues[1]);
+        var s3Val = parseInt(sValues[2]);
+        var s4Val = parseInt(sValues[3]);
+        var s5Val = parseInt(sValues[4]);
+        var s6Val = parseInt(sValues[5]);
+        var s7Val = parseInt(sValues[6]);
 
         if (s1Val < s2Val || s1Val < s3Val || s1Val < s7Val) {
             alert("S1 cannot be less than S2, S3, or S7");
@@ -148,7 +148,6 @@ $(document).ready(function() {
         if (s4Val < s5Val || s4Val < s6Val) {
             alert("S4 cannot be less than S5 or S6");
         }
-
 
     }
 
