@@ -101,7 +101,7 @@ $(document).ready(function() {
     // Function that is used to make sure that only valid numbers are used.
 
     function numChecker(currVal) {
-      var validNums = '123456789';
+      var validNums = '0123456789';
       var index = 0;
       for (index; index < currVal.length; index++) {
         if (!validNums.includes(currVal[index])) {
