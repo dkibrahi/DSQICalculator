@@ -31,7 +31,7 @@ $(document).ready(function() {
       ],
       [
         'S7 represents the number of modules with a single entry and exit point',
-        'S7 cannot be a negative number and must have a value smaller than S4'
+        'S7 cannot be a negative number and must have a value smaller than S1'
       ]
 
     ]; // Store rules that each s value must abide by
@@ -88,11 +88,11 @@ $(document).ready(function() {
 
     function emptyChecker(currVal) {
       if (!currVal) {
-        return false; // If the value that is passed in is invalid or empty, return false right away
+        return true; // If the value that is passed in is invalid or empty, return false right away
       }
 
       else {
-        return true;
+        return false;
       }
 
     }
@@ -126,6 +126,41 @@ $(document).ready(function() {
       }
     }
 
+    // Overall value checker
+
+    function overallChecker(sValues) {
+        if (sValues.length != 7) {
+          alert("Something went wrong.");
+        }
+
+        var s1Val = sValues[0];
+        var s2Val = sValues[1];
+        var s3Val = sValues[2];
+        var s4Val = sValues[3];
+        var s5Val = sValues[4];
+        var s6Val = sValues[5];
+        var s7Val = sValues[6];
+
+        if (s1Val < s2Val || s1Val < s3Val || s1Val < s7Val) {
+            alert("S1 cannot be less than S2, S3, or S7");
+        }
+
+        if (s4Val < s5Val || s4Val < s6Val) {
+            alert("S4 cannot be less than S5 or S6");
+        }
+
+
+    }
+
+    // Put in arrows
+
+    tippy('.sHelp', {
+        content: 'Click for help!',
+        placement: 'left',
+        animation: 'scale',
+        inertia: true,
+      });
+
 
     // Event Functions
 
@@ -156,23 +191,30 @@ $(document).ready(function() {
     $("input").on("input", function() {
       var currID = String(($(this).attr('id'))); // Get the current id value
       var userValue = $("#" + currID).val(); // Get the current user value
-      var isValid = emptyChecker(userValue) && numChecker(userValue); // Call the value checker functions to see if s-value is valid
+      var isValid = !emptyChecker(userValue) && numChecker(userValue); // Call the value checker functions to see if s-value is valid
       boxColorChanger(currID, isValid);
-
     });
 
 
     $("#nextPageButton").click(function() {
         var sValues = collectSValues(); // Get all the s1values from the user
         var isDistinct = $("#isDistinct").is(':checked'); // Check if the user has checked the isDistinct box
+        var index = 0;
+        var isValid = true;
+        for (index; index < sValues.length; index++) {
+          if (emptyChecker(sValues[index])) {
+              var sID = 's' + String(index + 1) + 'Val'; // Pass in the value of the id that is invalid
+              boxColorChanger(sID, false); // Make that box red
+              isValid = false;
+          }
+        }
+
+        if (!isValid) {
+          return; // If something went wrong, let the user fix that first better other errors
+        }
+
+        overallChecker(sValues);
+
     });
-
-    tippy('.sHelp', {
-        content: 'Click for help!',
-        placement: 'left',
-        animation: 'scale',
-        inertia: true,
-      });
-
 
 });
