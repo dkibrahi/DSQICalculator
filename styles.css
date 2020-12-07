@@ -11,6 +11,13 @@
   text-align: center;
 }
 
+.sForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+
 #titleText {
   padding: 1vw 0;
 }
@@ -64,6 +71,6 @@ li {
 /* Error Box */
 
 .overallErrors {
-  width: 500px;
-  height: 125px;
+  width: 1000px;
+  height: 250px;
 }

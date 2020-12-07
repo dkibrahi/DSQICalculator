@@ -141,11 +141,11 @@ $(document).ready(function() {
         var s6Val = parseInt(sValues[5]);
         var s7Val = parseInt(sValues[6]);
 
-        if (s1Val < s2Val || s1Val < s3Val || s1Val < s7Val) {
+        if (s1Val <= s2Val || s1Val <= s3Val || s1Val <= s7Val) {
             errorList.push("S1 cannot be less than S2, S3, or S7");
         }
 
-        if (s4Val < s5Val || s4Val < s6Val) {
+        if (s4Val <= s5Val || s4Val <= s6Val) {
             errorList.push("S4 cannot be less than S5 or S6");
         }
 
@@ -231,7 +231,7 @@ $(document).ready(function() {
 
         if (!isValid) {
           event.preventDefault();
-          errorModal(errorList)
+          errorModal(errorList);
           return; // If something went wrong, let the user fix that first better other errors
         }
 
@@ -239,7 +239,7 @@ $(document).ready(function() {
         errorList = overallChecker(sValues, errorList); // Send the error list to find new errors
 
         if (errorList.length != originalLength) {
-          console.log(errorList);
+          errorModal(errorList);
           event.preventDefault(); // If new errors are added to the error list, prevent submission
         }
 
