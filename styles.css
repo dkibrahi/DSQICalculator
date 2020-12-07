@@ -67,6 +67,9 @@ input::-webkit-input-placeholder {
   left: 20px;
 }
 
+#s3ValInformation, #s6ValInformation {
+  right: 20px;
+}
 
 li {
   list-style-position: inside;
@@ -85,6 +88,55 @@ li {
 /* Error Box */
 
 .overallErrors {
-  width: 1000px;
-  height: 250px;
+  width: 50%;
+  margin: 1em auto;
 }
+
+.overallErrors #close {
+  top: 1vw;
+}
+
+/* Button styling */
+
+#nextPageButton {
+   border-radius: 4px;
+   border: none;
+   color: #7FDBFF;
+   border: 1px solid black;
+   text-align: center;
+   font-size: 1.5vw;
+   padding: 0.8vw;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 11vw 0;
+
+ }
+
+ #nextPageButton span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.4s;
+ }
+
+ #nextPageButton:hover {
+   background-color: black;
+ }
+
+ #nextPageButton span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -1vw;
+   transition: 0.5s;
+ }
+
+#nextPageButton:hover span {
+   padding-right: 1.5vw;
+ }
+
+#nextPageButton:hover span:after {
+   opacity: 1;
+   right: 0;
+ }
