@@ -22,7 +22,6 @@
 input {
   margin: 1vw 0;
   padding: 0.5vw 0;
-  text-align: center;
 }
 
 
@@ -38,16 +37,18 @@ input {
   cursor: pointer;
 }
 
-.sInformation {
+.sInformation, .overallErrors {
   background-color: #303030;
   width: 500px;
   height: 125px;
   color: white;
   position: relative;
+  margin: 0 auto;
 }
 
 li {
-  margin-left: 20px;
+  list-style-position: inside;
+  margin-left: 50px;
 }
 
 /* Close button functionality */
@@ -57,4 +58,12 @@ li {
   top: 0;
   right: 5px;
   transform: rotate(45deg);
+}
+
+
+/* Error Box */
+
+.overallErrors {
+  width: 500px;
+  height: 125px;
 }

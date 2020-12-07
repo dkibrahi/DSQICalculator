@@ -128,7 +128,7 @@ $(document).ready(function() {
 
     // Overall value checker
 
-    function overallChecker(sValues) {
+    function overallChecker(sValues, errorList) {
         if (sValues.length != 7) {
           alert("Something went wrong.");
         }
@@ -142,13 +142,33 @@ $(document).ready(function() {
         var s7Val = parseInt(sValues[6]);
 
         if (s1Val < s2Val || s1Val < s3Val || s1Val < s7Val) {
-            alert("S1 cannot be less than S2, S3, or S7");
+            errorList.push("S1 cannot be less than S2, S3, or S7");
         }
 
         if (s4Val < s5Val || s4Val < s6Val) {
-            alert("S4 cannot be less than S5 or S6");
+            errorList.push("S4 cannot be less than S5 or S6");
         }
 
+        return errorList;
+
+    }
+
+    // Function that is used to show the user all their errors
+
+    function errorModal(errorList) {
+      $(".overallErrors").remove();
+      $("#nextButton").after("<div class = 'overallErrors'></div>");
+      $(".overallErrors").append("<div id = 'close'>+</div><br><br>");
+      $(".overallErrors").append("<ul id = 'userErrors'></ul>");
+
+      var index = 0;
+      for (index; index < errorList.length; index++) {
+          $("#userErrors").append("<li>" + errorList[index] + "</li>"); // Output all the rules for that s value
+      }
+
+      $("#close").click(function() {
+        $(".overallErrors").remove();
+      });
     }
 
     // Put in arrows
@@ -177,17 +197,16 @@ $(document).ready(function() {
 
         var index = 0;
         for (index; index < sValueRules[messageNumber].length; index++) {
-            $("#" + sID + "UL").append("<li> " + sValueRules[messageNumber][index] + " </li>"); // Output all the rules for that s value
+            $("#" + sID + "UL").append("<li>" + sValueRules[messageNumber][index] + "</li>"); // Output all the rules for that s value
         }
 
         $("#close").click(function() {
           $('.sInformation').remove();
         });
 
-
     });
 
-    $("input").on("input", function() {
+    $("input").on("input", function(event) {
       var currID = String(($(this).attr('id'))); // Get the current id value
       var userValue = $("#" + currID).val(); // Get the current user value
       var isValid = !emptyChecker(userValue) && numChecker(userValue); // Call the value checker functions to see if s-value is valid
@@ -195,24 +214,34 @@ $(document).ready(function() {
     });
 
 
-    $("#nextPageButton").click(function() {
+    $("#nextPageButton").click(function(event) {
         var sValues = collectSValues(); // Get all the s1values from the user
         var isDistinct = $("#isDistinct").is(':checked'); // Check if the user has checked the isDistinct box
         var index = 0;
         var isValid = true;
+        var errorList = [];
         for (index; index < sValues.length; index++) {
-          if (emptyChecker(sValues[index])) {
+          if (emptyChecker(sValues[index]) || !numChecker(sValues[index])) {
               var sID = 's' + String(index + 1) + 'Val'; // Pass in the value of the id that is invalid
               boxColorChanger(sID, false); // Make that box red
               isValid = false;
+              errorList.push("Invalid " + sID + ". You cannot leave values empty or put any character other than a digit between 0-9");
           }
         }
 
         if (!isValid) {
+          event.preventDefault();
+          errorModal(errorList)
           return; // If something went wrong, let the user fix that first better other errors
         }
 
-        overallChecker(sValues);
+        var originalLength = errorList.length;
+        errorList = overallChecker(sValues, errorList); // Send the error list to find new errors
+
+        if (errorList.length != originalLength) {
+          console.log(errorList);
+          event.preventDefault(); // If new errors are added to the error list, prevent submission
+        }
 
     });
 
