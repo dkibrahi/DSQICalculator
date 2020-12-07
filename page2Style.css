@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  text-align: center;
+}
+#titleText {
+  padding: 1vw 0;
+}
+
+#headerText {
+  padding-bottom: 2vw;
+}
+
+input {
+  margin: 1vw 0;
+  padding: 0.5vw 0;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.dHelp, .wHelp {
+  color: #7FDBFF;
+  border: 1px solid black;
+  padding: 0.5vw;
+}
+
+.wHelp:hover, #close:hover {
+  cursor: pointer;
+}
+
+.wInformation {
+  background-color: #303030;
+  width: 500px;
+  height: 125px;
+  color: white;
+  position: relative;
+}
+
+li {
+  margin-left: 20px;
+}
+
+/* Close button functionality */
+
+#close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  transform: rotate(45deg);
+}
