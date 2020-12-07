@@ -16,19 +16,28 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-
+.sForm div {
+  margin: 2vw 0;
+}
 
 #titleText {
-  padding: 1vw 0;
+  padding: 0.7em 0;
+  font-size: 3.5vw;
 }
 
 #headerText {
-  padding-bottom: 2vw;
+  padding-bottom: 1.5em;
+  font-size: 2.5vw;
 }
 
-input {
-  margin: 1vw 0;
-  padding: 0.5vw 0;
+input:not([type=checkbox]) {
+  width: 14vw;
+  height: 2vw;
+}
+
+
+input::-webkit-input-placeholder {
+  font-size: 1.25vw;
 }
 
 
@@ -38,6 +47,7 @@ input {
   color: #7FDBFF;
   border: 1px solid black;
   padding: 0.5vw;
+  font-size: 1.25vw;
 }
 
 .sHelp:hover, #close:hover {
@@ -46,24 +56,28 @@ input {
 
 .sInformation, .overallErrors {
   background-color: #303030;
-  width: 500px;
-  height: 125px;
   color: white;
   position: relative;
-  margin: 0 auto;
+  padding: 0vw 3vw;
+  padding-bottom: 1vw;
+  font-size: 1.25vw;
 }
+
+#s1ValInformation, #s4ValInformation, #s7ValInformation {
+  left: 20px;
+}
+
 
 li {
   list-style-position: inside;
-  margin-left: 50px;
 }
 
 /* Close button functionality */
 
 #close {
   position: absolute;
-  top: 0;
-  right: 5px;
+  top: -1vw;
+  right: 0.5em;
   transform: rotate(45deg);
 }
 

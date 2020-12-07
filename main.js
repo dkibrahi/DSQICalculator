@@ -6,32 +6,45 @@ $(document).ready(function() {
         'S1 cannot be a negative number or 0',
         'S1 must be greater than S2, S3, and S7'
       ],
+
       [
         'S2 represents the number of modules that rely on correct data input from the source or for produce data to be used elsewhere',
         'S2 cannot be a negative number',
         'S2 must be smaller than S1'
       ],
+
       [
         'S3 represents the number of modules that rely on prior processing',
         'S3 cannot be a negative number',
         'S3 must be smaller than S1'
       ],
+
       [
         'S4 represents the number of database items',
         'S4 cannot be a negative number and must be greater than 0',
         'S4 needs to be greater than S5 and S6'
       ],
+
       [
         'S5 represents the total number of unique database items',
         'S5 cannot be a negative number and must have a value smaller than S4'
       ],
+
       [
         'S6 represents the total number of segments in the database',
         'S6 cannot be a negative number and must have a value smaller than S4'
       ],
+
       [
         'S7 represents the number of modules with a single entry and exit point',
         'S7 cannot be a negative number and must have a value smaller than S1'
+      ],
+
+      [
+        'The distinct method will change the way the DSQI is calculated',
+        'Specficially, the distinct method will set the D1 value either to 1 or 0 on the next page',
+        'Checking this box means that the distinct method will be used and the D1 value will be set to 1',
+        'If this box is left unchecked, then the distinct method will not be used and the D1 value will be 0'
       ]
 
     ]; // Store rules that each s value must abide by
@@ -67,6 +80,10 @@ $(document).ready(function() {
 
       else if (sID == 's7') {
         return ['s7Val', 6]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else {
+        return ['d1Val', 7];
       }
 
     }
@@ -186,7 +203,7 @@ $(document).ready(function() {
     $(".sHelp").click(function() {
         $('.sInformation').remove();
         var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
-        var sInfo = findSValue(backgroundID);
+        var sInfo = findSValue(backgroundID); // Find what the id of the new modal should be called
 
         var sID = sInfo[0]; // Get new value HTML should be appended to
         var messageNumber = sInfo[1]; // Get the index value to access the appripriate message in the sValueRules arrary
