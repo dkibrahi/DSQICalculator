@@ -31,30 +31,29 @@ var wValueRules = [
     // ***** FUNCTIONS *****
 
     /// Function that is used to find which of the sValue buttons the user clicked
-
     function findWValue(wID) {
       if (wID == 'w1') {
-        return ['w1Val', 0]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w1Val', 0]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
       else if (wID == 'w2') {
-        return ['w2Val', 1]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w2Val', 1]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
       else if (wID == 'w3') {
-        return ['w3Val', 2]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w3Val', 2]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
       else if (wID == 'w4') {
-        return ['w4Val', 3]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w4Val', 3]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
       else if (wID == 'w5') {
-        return ['w5Val', 4]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w5Val', 4]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
       else if (wID == 'w6') {
-        return ['w6Val', 5]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+        return ['w6Val', 5]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
       }
 
     }
@@ -127,29 +126,9 @@ var wValueRules = [
         var w5Val = parseInt(wValues[4]);
         var w6Val = parseInt(wValues[5]);
 
-
+	
         if ((w1Val + w2Val+ w2Val+ w3Val+ w4Val+ w5Val+ w6Val) != 100) {
             alert("Sum of weights must be equal to 100%");
-        }
-
-        if (w2Val >=0) {
-            alert("W2 cannot be negative or equal to zero");
-        }
-
-        if (w3Val >=0) {
-            alert("W3 cannot be negative or equal to zero");
-        }
-
-        if (w4Val >=0) {
-            alert("W4 cannot be negative or equal to zero");
-        }
-
-        if (w5Val >=0) {
-            alert("W5 cannot be negative or equal to zero");
-        }
-
-        if (w6Val >=0) {
-            alert("W6 cannot be negative or equal to zero");
         }
 
     }
@@ -170,6 +149,8 @@ var wValueRules = [
         $('.wInformation').remove();
         var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
         var wInfo = findWValue(backgroundID);
+ 
+
 
         var wID = wInfo[0]; // Get new value HTML should be appended to
         var messageNumber = wInfo[1]; // Get the index value to access the appripriate message in the sValueRules arrary
@@ -187,8 +168,89 @@ var wValueRules = [
           $('.wInformation').remove();
         });
 
+    });
+
+$("#calcButton").click(function() {
+  
+var dValues = [0, 0.42857, 0.14286, 0.28571, 0.28571, 0.57143]; //DEFAULT VALUES, WILL BE CHANGED ONCE MERGED
+var wValues = collectWValues(); //grabs the array of weights
+var result = 0;
+for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
+{
+	for(j=0; j < dValues.length; j++)
+	{
+		wValues[j] = wValues[j]/100;
+		result = result + (wValues[j] * dValues[j]);
+	}	
+}
+document.getElementById("dsqiData").placeholder = result;
+});
+
+// ERROR HANDLING FOR WEIGHT VALUES
+
+    $("#w1Val").on("input", function() {
+	var w1Val = $("#w1Val").val();
+	w1Val = parseInt(w1Val);
+
+        if (w1Val < 0) {
+            alert("W1 cannot be negative");
+        }
 
     });
+
+
+    $("#w2Val").on("input", function() {
+	var w2Val = $("#w2Val").val();
+	w2Val = parseInt(w2Val);
+
+        if (w2Val < 0) {
+            alert("W2 cannot be negative");
+        }
+
+    });
+
+    $("#w3Val").on("input", function() {
+	var w3Val = $("#w3Val").val();
+	w3Val = parseInt(w3Val);
+
+        if (w3Val < 0) {
+            alert("W3 cannot be negative");
+        }
+
+    });
+
+    $("#w4Val").on("input", function() {
+	var w4Val = $("#w4Val").val();
+	w4Val = parseInt(w4Val);
+
+        if (w4Val < 0) {
+            alert("W4 cannot be negative");
+        }
+
+    });
+
+    $("#w5Val").on("input", function() {
+	var w5Val = $("#w5Val").val();
+	w5Val = parseInt(w5Val);
+
+        if (w5Val < 0) {
+            alert("W5 cannot be negative");
+        }
+
+    });
+
+    $("#w6Val").on("input", function() {
+	var w6Val = $("#w6Val").val();
+	w2Val = parseInt(w6Val);
+
+        if (w6Val < 0) {
+            alert("W6 cannot be negative");
+        }
+
+    });
+
+
+
 
 
 

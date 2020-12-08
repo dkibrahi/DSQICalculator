@@ -37,6 +37,7 @@ input {
   color: #7FDBFF;
   border: 1px solid black;
   padding: 0.5vw;
+  font-size: 1.25vw;
 }
 
 .wHelp:hover, #close:hover {
@@ -45,10 +46,11 @@ input {
 
 .wInformation {
   background-color: #303030;
-  width: 500px;
-  height: 125px;
   color: white;
   position: relative;
+  padding: 0vw 3vw;
+  padding-bottom: 1vw;
+  font-size: 1.25vw;
 }
 
 li {
@@ -63,3 +65,46 @@ li {
   right: 5px;
   transform: rotate(45deg);
 }
+
+#backPageButton {
+   border-radius: 4px;
+   border: none;
+   color: #7FDBFF;
+   border: 1px solid black;
+   text-align: center;
+   font-size: 1.5vw;
+   padding: 0.8vw;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 11vw 0;
+
+ }
+
+ #backPageButton span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.4s;
+ }
+
+ #backPageButton:hover {
+   background-color: black;
+ }
+
+ #backPageButton span:after {
+   content: '\00AB';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -1vw;
+   transition: 0.5s;
+ }
+
+#backPageButton:hover span {
+   padding-right: 1.5vw;
+ }
+
+#backPageButton:hover span:after {
+   opacity: 1;
+   right: 0;
+ }
