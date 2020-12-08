@@ -233,7 +233,6 @@ $(document).ready(function() {
 
     $("#nextPageButton").click(function(event) {
         var sValues = collectSValues(); // Get all the s1values from the user
-        var isDistinct = $("#isDistinct").is(':checked'); // Check if the user has checked the isDistinct box
         var index = 0;
         var isValid = true;
         var errorList = [];

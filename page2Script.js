@@ -1,5 +1,5 @@
 $(document).ready(function() {
-var wValueRules = [
+  var wValueRules = [
       [
         'W1 cannot be a negative number or 0',
         'Sum of weights must equal 100%'
@@ -70,6 +70,21 @@ var wValueRules = [
         return [w1Value, w2Value, w3Value, w4Value, w5Value, w6Value];
     }
 
+
+    // Function that is used to collect all the user inputted s values
+
+    function collectSValues(temp) {
+        temp.push($("#s1Val").val());
+        temp.push($("#s2Val").val());
+        temp.push($("#s3Val").val());
+        temp.push($("#s4Val").val());
+        temp.push($("#s5Val").val());
+        temp.push($("#s6Val").val());
+        temp.push($("#s7Val").val());
+        return temp;
+    }
+
+
     // Function that makes sure no empty user values are passed
 
     function emptyChecker(currVal) {
@@ -126,7 +141,7 @@ var wValueRules = [
         var w5Val = parseInt(wValues[4]);
         var w6Val = parseInt(wValues[5]);
 
-	
+
         if ((w1Val + w2Val+ w2Val+ w3Val+ w4Val+ w5Val+ w6Val) != 100) {
             alert("Sum of weights must be equal to 100%");
         }
@@ -145,11 +160,21 @@ var wValueRules = [
 
     // Event Functions
 
+    $("#nextPageButton").click(function() {
+        // sValues = collectSValues(); // Get all the s1values from the user
+        var sValues = [];
+        localStorage.isDistinct = $("#d1Val").is(':checked');
+        localStorage.sValues = collectSValues(sValues);
+        console.log(localStorage.sValues);
+        console.log(localStorage.isDistinct);
+    });
+
+
     $(".wHelp").click(function() {
         $('.wInformation').remove();
         var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
         var wInfo = findWValue(backgroundID);
- 
+
 
 
         var wID = wInfo[0]; // Get new value HTML should be appended to
@@ -171,7 +196,7 @@ var wValueRules = [
     });
 
 $("#calcButton").click(function() {
-  
+
 var dValues = [0, 0.42857, 0.14286, 0.28571, 0.28571, 0.57143]; //DEFAULT VALUES, WILL BE CHANGED ONCE MERGED
 var wValues = collectWValues(); //grabs the array of weights
 var result = 0;
@@ -181,7 +206,7 @@ for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplie
 	{
 		wValues[j] = wValues[j]/100;
 		result = result + (wValues[j] * dValues[j]);
-	}	
+	}
 }
 document.getElementById("dsqiData").placeholder = result;
 });
@@ -194,6 +219,7 @@ document.getElementById("dsqiData").placeholder = result;
 
         if (w1Val < 0) {
             alert("W1 cannot be negative");
+            console.log(localStorage.sValues);
         }
 
     });
@@ -248,11 +274,6 @@ document.getElementById("dsqiData").placeholder = result;
         }
 
     });
-
-
-
-
-
 
 
 
