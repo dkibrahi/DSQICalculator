@@ -9,25 +9,34 @@
 
 .main {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .sForm {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  background-color: #00bfff;
+  margin-bottom: 3%;
 }
 
-.sForm div {
+.sForm div:not(.sInformation) {
   margin: 2vw 0;
+  margin-bottom: 6vw;
 }
 
 #titleText {
   padding: 0.7em 0;
   font-size: 3.5vw;
+  background-color: #303030;
+  color: white;
 }
 
 #headerText {
+  padding-top: 1em;
   padding-bottom: 1.5em;
   font-size: 2.5vw;
+  background-color: #00bfff;
+  color: white;
 }
 
 input:not([type=checkbox]) {
@@ -44,14 +53,16 @@ input::-webkit-input-placeholder {
 /* **** S1 Help Box STYLING **** */
 
 .sHelp {
-  color: #7FDBFF;
+  color: white;
   border: 1px solid black;
   padding: 0.5vw;
   font-size: 1.25vw;
+  transition: 0.1s ease-in;
 }
 
 .sHelp:hover, #close:hover {
   cursor: pointer;
+  background-color: black;
 }
 
 .sInformation, .overallErrors {
@@ -61,6 +72,7 @@ input::-webkit-input-placeholder {
   padding: 0vw 3vw;
   padding-bottom: 1vw;
   font-size: 1.25vw;
+  margin-top: 2vw;
 }
 
 #s1ValInformation, #s4ValInformation, #s7ValInformation {

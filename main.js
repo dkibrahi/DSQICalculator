@@ -192,7 +192,7 @@ $(document).ready(function() {
 
     tippy('.sHelp', {
         content: 'Click for help!',
-        placement: 'left',
+        placement: 'top',
         animation: 'scale',
         inertia: true,
       });
