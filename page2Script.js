@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  var wValueRules = [
+  displayDValues();
+var wValueRules = [
       [
         'W1 cannot be a negative number or 0',
         'Sum of weights must equal 100%'
@@ -84,7 +85,6 @@ $(document).ready(function() {
         return temp;
     }
 
-
     // Function that makes sure no empty user values are passed
 
     function emptyChecker(currVal) {
@@ -129,9 +129,13 @@ $(document).ready(function() {
 
     // Overall value checker
 
-    function overallChecker(sValues) {
-        if (wValues.length != 6) {
+    function overallChecker(wValues) {
+        
+	var noError = true;
+
+	if (wValues.length != 6) {
           alert("Something went wrong.");
+	  noError = false;
         }
 
         var w1Val = parseInt(wValues[0]);
@@ -141,11 +145,14 @@ $(document).ready(function() {
         var w5Val = parseInt(wValues[4]);
         var w6Val = parseInt(wValues[5]);
 
-
-        if ((w1Val + w2Val+ w2Val+ w3Val+ w4Val+ w5Val+ w6Val) != 100) {
+	var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
+	
+        if ( total != 100) {
             alert("Sum of weights must be equal to 100%");
+	    noError = false;
         }
 
+	return noError;
     }
 
     // Put in arrows
@@ -167,8 +174,39 @@ $(document).ready(function() {
         localStorage.sValues = collectSValues(sValues);
         console.log(localStorage.sValues);
         console.log(localStorage.isDistinct);
+	
     });
 
+function displayDValues(){
+	var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
+	document.getElementById("d1data").placeholder = dValues[0];
+	document.getElementById("d2data").placeholder = dValues[1];
+	document.getElementById("d3data").placeholder = dValues[2];
+	document.getElementById("d4data").placeholder = dValues[3];
+	document.getElementById("d5data").placeholder = dValues[4];
+	document.getElementById("d6data").placeholder = dValues[5];
+}
+
+function collectDValues(checked, sValues){
+
+ var d1Val;
+        if(checked==true)
+	{
+	  d1Val = 1;
+	}
+	else
+	{
+	  d1Val = 0;
+	}
+	document.getElementById("d1data").placeholder = d1Val;
+        var d2Val = 1- (parseInt(sValues.substr(2, 3)))/(parseInt(sValues.substr(0,1)));
+        var d3Val = 1 - (parseInt(sValues.substr(4, 5)))/ (parseInt(sValues.substr(0,1)));
+        var d4Val = 1 - (parseInt(sValues.substr(8, 9)))/(parseInt(sValues.substr(6, 7)));
+        var d5Val = 1 - (parseInt(sValues.substr(10, 11)))/(parseInt(sValues.substr(6, 7)));
+        var d6Val = 1 - (parseInt(sValues.substr(12, 13)))/(parseInt(sValues.substr(6, 7)));
+
+	return [d1Val, d2Val, d3Val, d4Val, d5Val, d6Val];
+}
 
     $(".wHelp").click(function() {
         $('.wInformation').remove();
@@ -197,9 +235,11 @@ $(document).ready(function() {
 
 $("#calcButton").click(function() {
 
-var dValues = [0, 0.42857, 0.14286, 0.28571, 0.28571, 0.57143]; //DEFAULT VALUES, WILL BE CHANGED ONCE MERGED
+var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
 var wValues = collectWValues(); //grabs the array of weights
 var result = 0;
+var noError = overallChecker(wValues);
+if(noError == true){
 for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
 {
 	for(j=0; j < dValues.length; j++)
@@ -209,6 +249,7 @@ for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplie
 	}
 }
 document.getElementById("dsqiData").placeholder = result;
+}
 });
 
 // ERROR HANDLING FOR WEIGHT VALUES
