@@ -235,21 +235,35 @@ function collectDValues(checked, sValues){
 
 $("#calcButton").click(function() {
 
-var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
-var wValues = collectWValues(); //grabs the array of weights
-var result = 0;
-var noError = overallChecker(wValues);
-if(noError == true){
-for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
-{
-	for(j=0; j < dValues.length; j++)
-	{
-		wValues[j] = wValues[j]/100;
-		result = result + (wValues[j] * dValues[j]);
+	var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
+	var wValues = collectWValues(); //grabs the array of weights
+	var result = 0;
+	var noError = overallChecker(wValues);
+	if(noError == true){
+		for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
+		{
+			for(j=0; j < dValues.length; j++)
+			{
+				wValues[j] = wValues[j]/100;
+				result = result + (wValues[j] * dValues[j]);
+			}
+		}
+		document.getElementById("dsqiData").placeholder = result;
+	
+
+		if(result > 0.2)
+		{
+			alert("Congrats! Your DSQI is above average!");
+		}
+		else if(result < 0.2)
+		{
+			alert("Unfortunately, your DSQI is below average");
+		}
+		else
+		{
+			alert("Your DSQI is exactly the average!");
+		}
 	}
-}
-document.getElementById("dsqiData").placeholder = result;
-}
 });
 
 // ERROR HANDLING FOR WEIGHT VALUES
