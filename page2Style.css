@@ -16,20 +16,32 @@
   color: white;
 }
 
+#dText, #wText {
+  font-size: 2vw;
+}
+
 
 input {
   margin: 1vw 0;
   padding: 0.5vw 0;
+  width: 14vw;
+  height: 2vw;
   text-align: center;
 }
 
+input::-webkit-input-placeholder {
+  font-size: 1.25vw;
+}
+
 .column {
-  float: left;
-  width: 50%;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1vw;
+  margin-bottom: 3vw;
   background-color: #00bfff;
   color: white;
 }
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -63,10 +75,10 @@ span {
   cursor: pointer;
 }
 
-#backPageButton {
+#backPageButton, #calcButton {
    border-radius: 4px;
    border: none;
-   color: #7FDBFF;
+   color: #00bfff;
    border: 1px solid black;
    text-align: center;
    font-size: 1.5vw;
@@ -74,10 +86,16 @@ span {
    transition: all 0.4s;
    cursor: pointer;
    margin: 11vw 0;
-
  }
 
- #backPageButton span {
+ #calcButton {
+   width: 15%;
+   margin: 0 auto;
+   font-size: 1.25vw;
+   margin-bottom: 2vw;
+ }
+
+ #backPageButton span, #calcButton span {
    cursor: pointer;
    display: inline-block;
    position: relative;
@@ -85,12 +103,12 @@ span {
    background-color: white;
  }
 
- #backPageButton:hover {
+ #backPageButton:hover, #calcButton:hover {
    background-color: black;
  }
 
- #backPageButton span:after {
-   content: '\00AB';
+
+ #backPageButton span:after, #calcButton span:after {
    position: absolute;
    opacity: 0;
    top: 0;
@@ -98,12 +116,19 @@ span {
    transition: 0.5s;
  }
 
-#backPageButton:hover span {
-   padding-right: 1.5vw;
+ #backPageButton span:after {
+    content: '\00AB';
+ }
+
+#backPageButton:hover span, #calcButton:hover span {
    background-color: black;
  }
 
-#backPageButton:hover span:after {
+#backPageButton:hover span {
+  padding-right: 1.5vw;
+}
+
+#backPageButton:hover span:after, #calcButton:hover span:after {
    opacity: 1;
    right: 0;
  }

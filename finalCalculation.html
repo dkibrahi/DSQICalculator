@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="page2Style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script type = 'text/javascript' src="page2Script.js"></script>
@@ -17,7 +18,8 @@
     <h1 id = 'titleText'>DSQI Calculator</h1>
 
 
-  <div class = "column">
+  <div class= "column">
+  <div class = "column1">
    <h2 id = 'dText'>D-Values</h2>
    <form>
     <span class = 'dHelp' id = 'd1'>D1</span>
@@ -36,7 +38,7 @@
   </div>
 
 
-  <div class = "column">
+  <div class = "column2">
     <h2 id = 'wText'>Weights (total must equal 100%)</h2>
    <form>
     <span class = 'wHelp' id = 'w1'>W1 for D1</span>
@@ -58,22 +60,23 @@
     <span class = 'wHelp' id = 'w5'>W5 for D5</span>
     <input type="number" id = 'w5Val' placeholder="Enter W5 Value Here"></input>
     <span class = 'wHelp percent'> % </span><br>
-    
+
     <span class = 'wHelp' id = 'w6'>W6 for D6</span>
     <input type="number" id = 'w6Val' placeholder="Enter W6 Value Here"></input>
     <span class = 'wHelp percent'> % </span><br>
   </form>
   </div>
+</div>
 
-  <button type="button" id = "calcButton">Calculate DSQI</button><br>
 
-  <span class = 'dHelp' id = 'dsqi'>DSQI</span>
-  <input type = "number" readonly = "readonly" id ="dsqiData" placeholder><br><br>
+  <div id="calcButton">
+    <a id="calculateDSQIButton"><span>Calculate DSQI</a>
+  </div>
 
-  <!-- <br><button type="button" id = "backButton"><a href = "index.html" id="backPageButton">Back</a></button> -->
   <div id="backkButton">
     <a href="index.html" id="backPageButton"><span>Back</a>
   </div>
+
 </div>
 </body>
 </html>

@@ -150,8 +150,6 @@ var wValueRules = [
         var sValues = [];
         sessionStorage.isDistinct = $("#d1Val").is(':checked');
         sessionStorage.sValues = collectSValues(sValues);
-        console.log(sessionStorage.sValues);
-        console.log(sessionStorage.isDistinct);
 
     });
 
@@ -202,19 +200,17 @@ $("#calcButton").click(function() {
 				result = result + (wValues[j] * dValues[j]);
 			}
 		}
-		document.getElementById("dsqiData").placeholder = result;
 
-
-		if (result > 0.2) {
-			alert("Congrats! Your DSQI is above average!");
+    if (result > 0.2) {
+      swal("Congratuations!", "Your DSQI is " + result + "! That is higher than average!", "success");
 		}
 
 		else if(result < 0.2) {
-			alert("Unfortunately, your DSQI is below average");
+			swal("Bummer!", "Your DSQI is " + result + ". That is lower than average.", "error");
 		}
 
 		else {
-			alert("Your DSQI is exactly the average!");
+			swal("Spot on!", "Your DSQI is " + result + ". That is pretty average!", "info");
 		}
 	}
 
