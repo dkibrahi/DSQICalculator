@@ -150,20 +150,23 @@ $(document).ready(function() {
           alert("Something went wrong.");
         }
 
+        var index = 1;
         var s1Val = parseInt(sValues[0]);
-        var s2Val = parseInt(sValues[1]);
-        var s3Val = parseInt(sValues[2]);
         var s4Val = parseInt(sValues[3]);
-        var s5Val = parseInt(sValues[4]);
-        var s6Val = parseInt(sValues[5]);
-        var s7Val = parseInt(sValues[6]);
+        for (index; index < sValues.length; index++) {
+            if ((index < 3 || index == 6) && parseInt(sValues[index]) >= s1Val) {
+              boxColorChanger("s1Val", false);
+              boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
+              errorList.push("S1 cannot be less than S" + (index + 1));
+              console.log(errorList);
+            }
 
-        if (s1Val <= s2Val || s1Val <= s3Val || s1Val <= s7Val) {
-            errorList.push("S1 cannot be less than S2, S3, or S7");
-        }
+            else if (index > 4 && parseInt(sValues[index]) >= s4Val) {
+              boxColorChanger("s4Val", false);
+              boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
+              errorList.push("S4 cannot be less than S" + (index + 1));
+            }
 
-        if (s4Val <= s5Val || s4Val <= s6Val) {
-            errorList.push("S4 cannot be less than S5 or S6");
         }
 
         return errorList;

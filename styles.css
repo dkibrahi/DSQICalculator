@@ -39,6 +39,10 @@
   color: white;
 }
 
+#d1Val {
+  width: 1vw;
+}
+
 input:not([type=checkbox]) {
   width: 14vw;
   height: 2vw;
