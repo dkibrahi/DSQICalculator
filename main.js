@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // ALL CODE GOES IN HERE
+
     var sValueRules = [
       [
         'S1 represents the total number of modules',
@@ -191,6 +192,19 @@ $(document).ready(function() {
       });
     }
 
+
+    function sValueChecker() {
+      var index = 0;
+      var sValueLength = localStorage. getItem("sValues").length; // get length of sValues
+      for (index; index < sValueLength; index++) {
+          if (index % 2 == 0 && isNaN(localStorage.sValues[index])) {
+            alert(localStorage.sValues[index]);
+          }
+      }
+
+      return true;
+    }
+
     // Put in arrows
 
     tippy('.sHelp', {
@@ -260,8 +274,25 @@ $(document).ready(function() {
         if (errorList.length != originalLength) {
           errorModal(errorList);
           event.preventDefault(); // If new errors are added to the error list, prevent submission
+          return;
         }
-
     });
+
+    var ls = localStorage.getItem('namespace.visited');
+    if (ls == null) {
+      alert("Your first visit");
+      localStorage.setItem('namespace.visited', 1)
+    }
+
+    else if (sValueChecker()) {
+      $("#s1Val").attr("value", localStorage.sValues[0]);
+      $("#s2Val").attr("value", localStorage.sValues[2]);
+      $("#s3Val").attr("value", localStorage.sValues[4]);
+      $("#s4Val").attr("value", localStorage.sValues[6]);
+      $("#s5Val").attr("value", localStorage.sValues[8]);
+      $("#s6Val").attr("value", localStorage.sValues[10]);
+      $("#s7Val").attr("value", localStorage.sValues[12]);
+    }
+
 
 });

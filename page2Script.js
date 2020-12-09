@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  displayDValues();
+  var path = window.location.pathname;
+  var page = path.split("/").pop();
+  if (page == "finalCalculation.html") {
+    displayDValues(); // Prevents error where this would be called before the second page is loaded
+  }
+
+
 var wValueRules = [
       [
         'W1 cannot be a negative number or 0',
@@ -73,16 +79,15 @@ var wValueRules = [
 
 
     // Function that is used to collect all the user inputted s values
-
-    function collectSValues(temp) {
-        temp.push($("#s1Val").val());
-        temp.push($("#s2Val").val());
-        temp.push($("#s3Val").val());
-        temp.push($("#s4Val").val());
-        temp.push($("#s5Val").val());
-        temp.push($("#s6Val").val());
-        temp.push($("#s7Val").val());
-        return temp;
+    function collectSValues() {
+        var s1Value = $("#s1Val").val();
+        var s2Value = $("#s2Val").val();
+        var s3Value = $("#s3Val").val();
+        var s4Value = $("#s4Val").val();
+        var s5Value = $("#s5Val").val();
+        var s6Value = $("#s6Val").val();
+        var s7Value = $("#s7Val").val();
+        return [s1Value, s2Value, s3Value, s4Value, s5Value, s6Value, s7Value];
     }
 
     // Function that makes sure no empty user values are passed
@@ -130,7 +135,7 @@ var wValueRules = [
     // Overall value checker
 
     function overallChecker(wValues) {
-        
+
 	var noError = true;
 
 	if (wValues.length != 6) {
@@ -146,7 +151,7 @@ var wValueRules = [
         var w6Val = parseInt(wValues[5]);
 
 	var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
-	
+
         if ( total != 100) {
             alert("Sum of weights must be equal to 100%");
 	    noError = false;
@@ -171,10 +176,11 @@ var wValueRules = [
         // sValues = collectSValues(); // Get all the s1values from the user
         var sValues = [];
         localStorage.isDistinct = $("#d1Val").is(':checked');
+        sessionStorage.isDistinct = $("#d1Val").is(':checked');
         localStorage.sValues = collectSValues(sValues);
         console.log(localStorage.sValues);
         console.log(localStorage.isDistinct);
-	
+
     });
 
 function displayDValues(){
@@ -249,7 +255,7 @@ $("#calcButton").click(function() {
 			}
 		}
 		document.getElementById("dsqiData").placeholder = result;
-	
+
 
 		if(result > 0.2)
 		{
@@ -274,7 +280,6 @@ $("#calcButton").click(function() {
 
         if (w1Val < 0) {
             alert("W1 cannot be negative");
-            console.log(localStorage.sValues);
         }
 
     });
@@ -329,8 +334,6 @@ $("#calcButton").click(function() {
         }
 
     });
-
-
 
 
 });
