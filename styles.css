@@ -121,8 +121,7 @@ li {
 #nextPageButton {
    border-radius: 4px;
    border: none;
-   color: #7FDBFF;
-   border: 1px solid black;
+   border: 1px solid #7FDBFF;
    text-align: center;
    font-size: 1.5vw;
    padding: 0.8vw;
@@ -131,6 +130,10 @@ li {
    margin: 11vw 0;
 
  }
+
+ #nextPageButton:visited {
+    color: black;
+  }
 
  #nextPageButton span {
    cursor: pointer;
@@ -141,6 +144,7 @@ li {
 
  #nextPageButton:hover {
    background-color: black;
+   color: #7FDBFF;
  }
 
  #nextPageButton span:after {
@@ -150,13 +154,16 @@ li {
    top: 0;
    right: -1vw;
    transition: 0.5s;
+   color: #7FDBFF;
  }
 
 #nextPageButton:hover span {
    padding-right: 1.5vw;
+   color: #7FDBFF;
  }
 
 #nextPageButton:hover span:after {
    opacity: 1;
    right: 0;
+   color: #7FDBFF;
  }

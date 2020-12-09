@@ -165,7 +165,7 @@ function displayDValues(){
 
 function collectDValues(checked, sValues) {
   var d1Val;
-  if (checked) {
+  if (sessionStorage.isDistinct === 'true') {
 	  d1Val = 1;
 	}
 
@@ -201,11 +201,11 @@ $("#calcButton").click(function() {
 			}
 		}
 
-    if (result > 0.2) {
+    if (result > 0.25) {
       swal("Congratuations!", "Your DSQI is " + result + "! That is higher than average!", "success");
 		}
 
-		else if(result < 0.2) {
+		else if(result < 0.15) {
 			swal("Bummer!", "Your DSQI is " + result + ". That is lower than average.", "error");
 		}
 
@@ -218,66 +218,32 @@ $("#calcButton").click(function() {
 
 // ERROR HANDLING FOR WEIGHT VALUES
 
-    $("#w1Val").on("input", function() {
-	var w1Val = $("#w1Val").val();
-	w1Val = parseInt(w1Val);
+    $(".wVal").on("input", function() {
+        var currID = String(($(this).attr('id')));; // Get the current id of the element
+        var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
+        var currVal = $("#" + currID).val();; // Save the current weight value
 
-        if (w1Val < 0) {
-            alert("W1 cannot be negative");
+        if (isNaN(currVal) || currVal == '') {
+          swal("Error!", "W" + currIDNumber + " must be a number!", "error");
+          boxColorChanger(currID, false);
+        }
+
+        currVal = Number(currVal);
+
+        if (currVal < 0) {
+          swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
+          boxColorChanger(currID, false);
+        }
+
+        else if (!Number.isInteger(currVal)) {
+          swal("Error!", "W" + currIDNumber + " must be an integer!", "error");
+          boxColorChanger(currID, false);
+        }
+
+        else {
+           boxColorChanger(currID, true);
         }
 
     });
-
-
-    $("#w2Val").on("input", function() {
-	var w2Val = $("#w2Val").val();
-	w2Val = parseInt(w2Val);
-
-        if (w2Val < 0) {
-            alert("W2 cannot be negative");
-        }
-
-    });
-
-    $("#w3Val").on("input", function() {
-	var w3Val = $("#w3Val").val();
-	w3Val = parseInt(w3Val);
-
-        if (w3Val < 0) {
-            alert("W3 cannot be negative");
-        }
-
-    });
-
-    $("#w4Val").on("input", function() {
-	var w4Val = $("#w4Val").val();
-	w4Val = parseInt(w4Val);
-
-        if (w4Val < 0) {
-            alert("W4 cannot be negative");
-        }
-
-    });
-
-    $("#w5Val").on("input", function() {
-	var w5Val = $("#w5Val").val();
-	w5Val = parseInt(w5Val);
-
-        if (w5Val < 0) {
-            alert("W5 cannot be negative");
-        }
-
-    });
-
-    $("#w6Val").on("input", function() {
-	var w6Val = $("#w6Val").val();
-	w2Val = parseInt(w6Val);
-
-        if (w6Val < 0) {
-            alert("W6 cannot be negative");
-        }
-
-    });
-
 
 });

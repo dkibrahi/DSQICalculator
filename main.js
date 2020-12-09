@@ -246,12 +246,12 @@ $(document).ready(function() {
           currInvalid = true;
           sID = 's' + String(index + 1) + 'Val';
           if (emptyChecker(sValues[index])) {
-              currInvalid = false;
-              errorList.push("Invalid " + sID + ". You cannot leave values empty");
+              currInvalid = false; // If the value is empty, alert the user
+              errorList.push("Invalid " + sID + ". You cannot leave values empty or put special characters");
           }
 
-          else if (isNaN(sValues[index]) || parseInt(sValues[index]) < 0) {
-            currInvalid = false;
+          else if (isNaN(sValues[index]) || parseInt(sValues[index]) < 0 || !Number.isInteger(Number(sValues[index]))) {
+            currInvalid = false; // If the value isn't a positive whole number, then alert the use
             errorList.push("Invalid " + sID + ". You cannot put any character other than a digit between 0-9");
           }
 
