@@ -118,39 +118,29 @@ var wValueRules = [
     // Overall value checker
 
     function overallChecker(wValues) {
-
-	var noError = true;
-
-	if (wValues.length != 6) {
+      var noError = true;
+      if (wValues.length != 6) {
           alert("Something went wrong.");
-	  noError = false;
-        }
+          noError = false;
+      }
 
-        var w1Val = parseInt(wValues[0]);
-        var w2Val = parseInt(wValues[1]);
-        var w3Val = parseInt(wValues[2]);
-        var w4Val = parseInt(wValues[3]);
-        var w5Val = parseInt(wValues[4]);
-        var w6Val = parseInt(wValues[5]);
+      var w1Val = parseInt(wValues[0]);
+      var w2Val = parseInt(wValues[1]);
+      var w3Val = parseInt(wValues[2]);
+      var w4Val = parseInt(wValues[3]);
+      var w5Val = parseInt(wValues[4]);
+      var w6Val = parseInt(wValues[5]);
 
-	var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
+      var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
 
-        if ( total != 100) {
-            alert("Sum of weights must be equal to 100%");
-	    noError = false;
-        }
+      if (total != 100) {
+          alert("Sum of weights must be equal to 100%");
+          noError = false;
+      }
 
-	return noError;
+      return noError;
+
     }
-
-    // Put in arrows
-
-    tippy('.wHelp', {
-        content: 'Click for help!',
-        placement: 'left',
-        animation: 'scale',
-        inertia: true,
-      });
 
 
     // Event Functions
@@ -175,51 +165,27 @@ function displayDValues(){
 	document.getElementById("d6data").placeholder = dValues[5];
 }
 
-function collectDValues(checked, sValues){
-
- var d1Val;
-        if(checked==true)
-	{
+function collectDValues(checked, sValues) {
+  var d1Val;
+  if (checked) {
 	  d1Val = 1;
 	}
-	else
-	{
+
+	else {
 	  d1Val = 0;
 	}
+
 	document.getElementById("d1data").placeholder = d1Val;
-        var d2Val = 1- (parseInt(sValues.substr(2, 3)))/(parseInt(sValues.substr(0,1)));
-        var d3Val = 1 - (parseInt(sValues.substr(4, 5)))/ (parseInt(sValues.substr(0,1)));
-        var d4Val = 1 - (parseInt(sValues.substr(8, 9)))/(parseInt(sValues.substr(6, 7)));
-        var d5Val = 1 - (parseInt(sValues.substr(10, 11)))/(parseInt(sValues.substr(6, 7)));
-        var d6Val = 1 - (parseInt(sValues.substr(12, 13)))/(parseInt(sValues.substr(6, 7)));
+
+  var d2Val = 1- (parseInt(sValues.substr(2, 3)))/(parseInt(sValues.substr(0,1)));
+  var d3Val = 1 - (parseInt(sValues.substr(4, 5)))/ (parseInt(sValues.substr(0,1)));
+  var d4Val = 1 - (parseInt(sValues.substr(8, 9)))/(parseInt(sValues.substr(6, 7)));
+  var d5Val = 1 - (parseInt(sValues.substr(10, 11)))/(parseInt(sValues.substr(6, 7)));
+  var d6Val = 1 - (parseInt(sValues.substr(12, 13)))/(parseInt(sValues.substr(6, 7)));
 
 	return [d1Val, d2Val, d3Val, d4Val, d5Val, d6Val];
 }
 
-    $(".wHelp").click(function() {
-        $('.wInformation').remove();
-        var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
-        var wInfo = findWValue(backgroundID);
-
-
-
-        var wID = wInfo[0]; // Get new value HTML should be appended to
-        var messageNumber = wInfo[1]; // Get the index value to access the appripriate message in the sValueRules arrary
-
-        $("#" + wID).after("<div class = 'wInformation' id = '" + wID + "Information'></div>");
-        $("#" + wID + "Information").append("<div id = 'close'>+</div><br><br>");
-        $("#" + wID + "Information").append("<ul id = '" + wID + "UL'></ul>");
-
-        var index = 0;
-        for (index; index < wValueRules[messageNumber].length; index++) {
-            $("#" + wID + "UL").append("<li> " + wValueRules[messageNumber][index] + " </li>"); // Output all the rules for that s value
-        }
-
-        $("#close").click(function() {
-          $('.wInformation').remove();
-        });
-
-    });
 
 $("#calcButton").click(function() {
 
@@ -227,7 +193,7 @@ $("#calcButton").click(function() {
 	var wValues = collectWValues(); //grabs the array of weights
 	var result = 0;
 	var noError = overallChecker(wValues);
-	if(noError == true){
+	if (noError) {
 		for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
 		{
 			for(j=0; j < dValues.length; j++)
@@ -239,19 +205,19 @@ $("#calcButton").click(function() {
 		document.getElementById("dsqiData").placeholder = result;
 
 
-		if(result > 0.2)
-		{
+		if (result > 0.2) {
 			alert("Congrats! Your DSQI is above average!");
 		}
-		else if(result < 0.2)
-		{
+
+		else if(result < 0.2) {
 			alert("Unfortunately, your DSQI is below average");
 		}
-		else
-		{
+
+		else {
 			alert("Your DSQI is exactly the average!");
 		}
 	}
+
 });
 
 // ERROR HANDLING FOR WEIGHT VALUES
