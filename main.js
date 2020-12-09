@@ -145,7 +145,7 @@ $(document).ready(function() {
               console.log(errorList);
             }
 
-            else if (index >= 4 && parseInt(sValues[index]) >= s4Val) {
+            else if (index >= 4 && index < 6 && parseInt(sValues[index]) >= s4Val) {
               boxColorChanger("s4Val", false);
               boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
               errorList.push("S4 cannot be less than S" + (index + 1));
