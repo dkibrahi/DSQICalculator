@@ -115,23 +115,6 @@ $(document).ready(function() {
 
     }
 
-
-    // Function that is used to make sure that only valid numbers are used.
-
-    function numChecker(currVal) {
-      var validNums = '0123456789';
-      var index = 0;
-      for (index; index < currVal.length; index++) {
-        if (!validNums.includes(currVal[index])) {
-            return false; // If one of the values in the input box isn't a number, return false
-        }
-      }
-
-      return true; // If all numbers are valid, return true
-
-    }
-
-
     // Change color of box if it isn't valid
 
     function boxColorChanger(sID, isValid) {
@@ -162,7 +145,7 @@ $(document).ready(function() {
               console.log(errorList);
             }
 
-            else if (index > 4 && parseInt(sValues[index]) >= s4Val) {
+            else if (index >= 4 && parseInt(sValues[index]) >= s4Val) {
               boxColorChanger("s4Val", false);
               boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
               errorList.push("S4 cannot be less than S" + (index + 1));
@@ -194,11 +177,15 @@ $(document).ready(function() {
 
 
     function sValueChecker() {
+      if (!sessionStorage.sValues) {
+          return false; // If the session storage is empty, return false
+      }
+
       var index = 0;
-      var sValueLength = localStorage. getItem("sValues").length; // get length of sValues
+      var sValueLength = sessionStorage. getItem("sValues").length; // get length of sValues
       for (index; index < sValueLength; index++) {
-          if (index % 2 == 0 && isNaN(localStorage.sValues[index])) {
-            alert(localStorage.sValues[index]);
+          if (index % 2 == 0 && isNaN(sessionStorage.sValues[index])) {
+            return false;
           }
       }
 
@@ -243,7 +230,7 @@ $(document).ready(function() {
     $("input").on("input", function(event) {
       var currID = String(($(this).attr('id'))); // Get the current id value
       var userValue = $("#" + currID).val(); // Get the current user value
-      var isValid = !emptyChecker(userValue) && numChecker(userValue); // Call the value checker functions to see if s-value is valid
+      var isValid = !emptyChecker(userValue) && !isNaN(userValue) && parseInt(userValue) > 0; // Call the value checker functions to see if s-value is valid
       boxColorChanger(currID, isValid);
     });
 
@@ -251,15 +238,33 @@ $(document).ready(function() {
     $("#nextPageButton").click(function(event) {
         var sValues = collectSValues(); // Get all the s1values from the user
         var index = 0;
-        var isValid = true;
+        var isValid = true; // Will be used to check if the user values are ALL valid or invalid
+        var currInvalid = false; // Will be used as a temporary variable to check if the user value is invalid
         var errorList = [];
+        var sID = ""; // Current HTML ID for each s Value
         for (index; index < sValues.length; index++) {
-          if (emptyChecker(sValues[index]) || !numChecker(sValues[index])) {
-              var sID = 's' + String(index + 1) + 'Val'; // Pass in the value of the id that is invalid
-              boxColorChanger(sID, false); // Make that box red
-              isValid = false;
-              errorList.push("Invalid " + sID + ". You cannot leave values empty or put any character other than a digit between 0-9");
+          currInvalid = true;
+          sID = 's' + String(index + 1) + 'Val';
+          if (emptyChecker(sValues[index])) {
+              currInvalid = false;
+              errorList.push("Invalid " + sID + ". You cannot leave values empty");
           }
+
+          else if (isNaN(sValues[index]) || parseInt(sValues[index]) < 0) {
+            currInvalid = false;
+            errorList.push("Invalid " + sID + ". You cannot put any character other than a digit between 0-9");
+          }
+
+          else if ((index == 0 || index == 3) && parseInt(sValues[index]) == 0) {
+            currInvalid = false;
+            errorList.push("Invalid " + sID + ". " + sID + " values need to be greater than 0!");
+          }
+
+          if (!currInvalid) {
+            boxColorChanger(sID, false); // Make that box red
+            isValid = false;
+          }
+
         }
 
         if (!isValid) {
@@ -278,20 +283,19 @@ $(document).ready(function() {
         }
     });
 
-    var ls = localStorage.getItem('namespace.visited');
+    var ls = sessionStorage.getItem('namespace.visited');
     if (ls == null) {
-      alert("Your first visit");
-      localStorage.setItem('namespace.visited', 1)
+      sessionStorage.setItem('namespace.visited', 1)
     }
 
     else if (sValueChecker()) {
-      $("#s1Val").attr("value", localStorage.sValues[0]);
-      $("#s2Val").attr("value", localStorage.sValues[2]);
-      $("#s3Val").attr("value", localStorage.sValues[4]);
-      $("#s4Val").attr("value", localStorage.sValues[6]);
-      $("#s5Val").attr("value", localStorage.sValues[8]);
-      $("#s6Val").attr("value", localStorage.sValues[10]);
-      $("#s7Val").attr("value", localStorage.sValues[12]);
+      $("#s1Val").attr("value", sessionStorage.sValues[0]);
+      $("#s2Val").attr("value", sessionStorage.sValues[2]);
+      $("#s3Val").attr("value", sessionStorage.sValues[4]);
+      $("#s4Val").attr("value", sessionStorage.sValues[6]);
+      $("#s5Val").attr("value", sessionStorage.sValues[8]);
+      $("#s6Val").attr("value", sessionStorage.sValues[10]);
+      $("#s7Val").attr("value", sessionStorage.sValues[12]);
     }
 
 

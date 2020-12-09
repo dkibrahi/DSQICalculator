@@ -103,23 +103,6 @@ var wValueRules = [
 
     }
 
-
-    // Function that is used to make sure that only valid numbers are used.
-
-    function numChecker(currVal) {
-      var validNums = '0123456789';
-      var index = 0;
-      for (index; index < currVal.length; index++) {
-        if (!validNums.includes(currVal[index])) {
-            return false; // If one of the values in the input box isn't a number, return false
-        }
-      }
-
-      return true; // If all numbers are valid, return true
-
-    }
-
-
     // Change color of box if it isn't valid
 
     function boxColorChanger(wID, isValid) {
@@ -175,16 +158,15 @@ var wValueRules = [
     $("#nextPageButton").click(function() {
         // sValues = collectSValues(); // Get all the s1values from the user
         var sValues = [];
-        localStorage.isDistinct = $("#d1Val").is(':checked');
         sessionStorage.isDistinct = $("#d1Val").is(':checked');
-        localStorage.sValues = collectSValues(sValues);
-        console.log(localStorage.sValues);
-        console.log(localStorage.isDistinct);
+        sessionStorage.sValues = collectSValues(sValues);
+        console.log(sessionStorage.sValues);
+        console.log(sessionStorage.isDistinct);
 
     });
 
 function displayDValues(){
-	var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
+	var dValues = collectDValues(sessionStorage.isDistinct, sessionStorage.sValues);
 	document.getElementById("d1data").placeholder = dValues[0];
 	document.getElementById("d2data").placeholder = dValues[1];
 	document.getElementById("d3data").placeholder = dValues[2];
@@ -241,7 +223,7 @@ function collectDValues(checked, sValues){
 
 $("#calcButton").click(function() {
 
-	var dValues = collectDValues(localStorage.isDistinct, localStorage.sValues);
+	var dValues = collectDValues(sessionStorage.isDistinct, sessionStorage.sValues);
 	var wValues = collectWValues(); //grabs the array of weights
 	var result = 0;
 	var noError = overallChecker(wValues);
