@@ -124,14 +124,14 @@ var wValueRules = [
           noError = false;
       }
 
-      var w1Val = Number(wValues[0]);
-      var w2Val = Number(wValues[1]);
-      var w3Val = Number(wValues[2]);
-      var w4Val = Number(wValues[3]);
-      var w5Val = Number(wValues[4]);
-      var w6Val = Number(wValues[5]);
+      var w1Value = Number(wValues[0]);
+      var w2Value = Number(wValues[1]);
+      var w3Value = Number(wValues[2]);
+      var w4Value = Number(wValues[3]);
+      var w5Value = Number(wValues[4]);
+      var w6Value = Number(wValues[5]);
 
-      var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
+      var total = w1Value + w2Value + w3Value + w4Value + w5Value + w6Value;
 
       if (total != 100) {
           swal("Error!", "The sum of the weights must be 100%!", "error");
@@ -141,28 +141,145 @@ var wValueRules = [
       // General case for one variable. For each value (these should be strings at first), check if it is a number or is empty.
       // If not, convert it to a number, then check if it is negative. If it isn't, make sure its a intenger.
 
+      //W1 CASE BEGINS
+      if (isNaN(w1Value) || w1Value == '') {
+         swal("Error!", "W1" + " must be a positive number!", "error");
+         boxColorChanger(w1Val, false);
+       }
+      
+       currVal = Number(w1Value);
+      
+       if (w1Value < 0) {
+         swal("Error!","W1" + " cannot be negative!", "error");
+         boxColorChanger(w1Val, false);
+       }
+      
+       else if (!Number.isInteger(w1Value)) {
+         swal("Error!", "W1" + " must be an integer!", "error");
+         boxColorChanger(w1Val, false);
+       }
+      
+       else {
+          boxColorChanger(w1Val, true);
+       }
+	//W1 CASE ENDS
 
-      // if (isNaN(currVal) || currVal == '') {
-      //   swal("Error!", "W" + currIDNumber + " must be a positive number!", "error");
-      //   boxColorChanger(currID, false);
-      // }
-      //
-      // currVal = Number(currVal);
-      //
-      // if (currVal < 0) {
-      //   swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
-      //   boxColorChanger(currID, false);
-      // }
-      //
-      // else if (!Number.isInteger(currVal)) {
-      //   swal("Error!", "W" + currIDNumber + " must be an integer!", "error");
-      //   boxColorChanger(currID, false);
-      // }
-      //
-      // else {
-      //    boxColorChanger(currID, true);
-      // }
 
+	//W2 CASE BEGINS
+      if (isNaN(w2Value) || w2Value == '') {
+         swal("Error!", "W2" + " must be a positive number!", "error");
+         boxColorChanger(w2Val, false);
+       }
+      
+       currVal = Number(w2Value);
+      
+       if (w2Value < 0) {
+         swal("Error!","W2" + " cannot be negative!", "error");
+         boxColorChanger(w2Val, false);
+       }
+      
+       else if (!Number.isInteger(w2Value)) {
+         swal("Error!", "W2" + " must be an integer!", "error");
+         boxColorChanger(w2Val, false);
+       }
+      
+       else {
+          boxColorChanger(w2Val, true);
+       }
+	//W2 CASE ENDS
+
+	//W3 CASE BEGINS
+      if (isNaN(w3Value) || w3Value == '') {
+         swal("Error!", "W3" + " must be a positive number!", "error");
+         boxColorChanger(w3Val, false);
+       }
+      
+       currVal = Number(w3Value);
+      
+       if (w3Value < 0) {
+         swal("Error!","W3" + " cannot be negative!", "error");
+         boxColorChanger(w3Val, false);
+       }
+      
+       else if (!Number.isInteger(w1Value)) {
+         swal("Error!", "W3" + " must be an integer!", "error");
+         boxColorChanger(w3Val, false);
+       }
+      
+       else {
+          boxColorChanger(w3Val, true);
+       }
+	//W3 CASE ENDS
+
+	//W4 CASE BEGINS
+      if (isNaN(w4Value) || w4Value == '') {
+         swal("Error!", "W4" + " must be a positive number!", "error");
+         boxColorChanger(w4Val, false);
+       }
+      
+       currVal = Number(w4Value);
+      
+       if (w4Value < 0) {
+         swal("Error!","W4" + " cannot be negative!", "error");
+         boxColorChanger(w4Val, false);
+       }
+      
+       else if (!Number.isInteger(w4Value)) {
+         swal("Error!", "W4" + " must be an integer!", "error");
+         boxColorChanger(w4Val, false);
+       }
+      
+       else {
+          boxColorChanger(w4Val, true);
+       }
+	//W4 CASE ENDS
+
+	//W5 CASE BEGINS
+      if (isNaN(w5Value) || w5Value == '') {
+         swal("Error!", "W5" + " must be a positive number!", "error");
+         boxColorChanger(w5Val, false);
+       }
+      
+       currVal = Number(w5Value);
+      
+       if (w5Value < 0) {
+         swal("Error!","W5" + " cannot be negative!", "error");
+         boxColorChanger(w5Val, false);
+       }
+      
+       else if (!Number.isInteger(w5Value)) {
+         swal("Error!", "W5" + " must be an integer!", "error");
+         boxColorChanger(w5Val, false);
+       }
+      
+       else {
+          boxColorChanger(w5Val, true);
+       }
+	//W5 CASE ENDS
+
+	//W6 CASE BEGINS
+      if (isNaN(w6Value) || w6Value == '') {
+         swal("Error!", "W6" + " must be a positive number!", "error");
+         boxColorChanger(w6Val, false);
+       }
+      
+       currVal = Number(w6Value);
+      
+       if (w6Value < 0) {
+         swal("Error!","W6" + " cannot be negative!", "error");
+         boxColorChanger(w6Val, false);
+       }
+      
+       else if (!Number.isInteger(w6Value)) {
+         swal("Error!", "W6" + " must be an integer!", "error");
+         boxColorChanger(w6Val, false);
+       }
+      
+       else {
+          boxColorChanger(w6Val, true);
+       }
+	//W6 CASE ENDS
+	
       return noError;
 
     }
