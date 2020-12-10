@@ -182,9 +182,10 @@ $(document).ready(function() {
       }
 
       var index = 0;
-      var sValueLength = sessionStorage. getItem("sValues").length; // get length of sValues
-      for (index; index < sValueLength; index++) {
-          if (index % 2 == 0 && isNaN(sessionStorage.sValues[index])) {
+      var sValueArr = sessionStorage.sValues.split(",");
+      for (index; index < sValueArr.length; index++) {
+          if (isNaN(sValueArr[index])) {
+            alert(sValueArr[index]);
             return false;
           }
       }
@@ -294,13 +295,14 @@ $(document).ready(function() {
     }
 
     else if (sValueChecker()) {
-      $("#s1Val").attr("value", sessionStorage.sValues[0]);
-      $("#s2Val").attr("value", sessionStorage.sValues[2]);
-      $("#s3Val").attr("value", sessionStorage.sValues[4]);
-      $("#s4Val").attr("value", sessionStorage.sValues[6]);
-      $("#s5Val").attr("value", sessionStorage.sValues[8]);
-      $("#s6Val").attr("value", sessionStorage.sValues[10]);
-      $("#s7Val").attr("value", sessionStorage.sValues[12]);
+      var sValueArr = sessionStorage.sValues.split(",");
+      $("#s1Val").attr("value", sValueArr[0]);
+      $("#s2Val").attr("value", sValueArr[1]);
+      $("#s3Val").attr("value", sValueArr[2]);
+      $("#s4Val").attr("value", sValueArr[3]);
+      $("#s5Val").attr("value", sValueArr[4]);
+      $("#s6Val").attr("value", sValueArr[5]);
+      $("#s7Val").attr("value", sValueArr[6]);
     }
 
 

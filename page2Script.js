@@ -178,17 +178,18 @@ var wValueRules = [
 
     });
 
-function displayDValues(){
-	var dValues = collectDValues(sessionStorage.isDistinct, sessionStorage.sValues);
+function displayDValues() {
+	var dValues = collectDValues();
 	document.getElementById("d1data").placeholder = dValues[0];
 	document.getElementById("d2data").placeholder = dValues[1];
 	document.getElementById("d3data").placeholder = dValues[2];
 	document.getElementById("d4data").placeholder = dValues[3];
 	document.getElementById("d5data").placeholder = dValues[4];
 	document.getElementById("d6data").placeholder = dValues[5];
+  console.log(dValues);
 }
 
-function collectDValues(checked, sValues) {
+function collectDValues() {
   var d1Val;
   if (sessionStorage.isDistinct === 'true') {
 	  d1Val = 1;
@@ -198,48 +199,62 @@ function collectDValues(checked, sValues) {
 	  d1Val = 0;
 	}
 
+  var sValueArr = stringToNum(); // Get the s-values as numbers
 	document.getElementById("d1data").placeholder = d1Val;
 
-  var d2Val = 1- (parseInt(sValues.substr(2, 3)))/(parseInt(sValues.substr(0,1)));
-  var d3Val = 1 - (parseInt(sValues.substr(4, 5)))/ (parseInt(sValues.substr(0,1)));
-  var d4Val = 1 - (parseInt(sValues.substr(8, 9)))/(parseInt(sValues.substr(6, 7)));
-  var d5Val = 1 - (parseInt(sValues.substr(10, 11)))/(parseInt(sValues.substr(6, 7)));
-  var d6Val = 1 - (parseInt(sValues.substr(12, 13)))/(parseInt(sValues.substr(6, 7)));
+  var d2Val = 1 - (sValueArr[1] / sValueArr[0]);
+  var d3Val = 1 - (sValueArr[2] / sValueArr[0]);
+  var d4Val = 1 - (sValueArr[4] / sValueArr[3]);
+  var d5Val = 1 - (sValueArr[5] / sValueArr[3]);
+  var d6Val = 1 - (sValueArr[6] / sValueArr[0]);
 
 	return [d1Val, d2Val, d3Val, d4Val, d5Val, d6Val];
 }
 
 
+function stringToNum() {
+    var tempArr = sessionStorage.sValues.split(","); // Get the s-values
+    var finalArr = [];
+    var index = 0;
+    for (index; index < tempArr.length; index++) {
+        finalArr.push(parseInt(tempArr[index]));
+    }
+
+    return finalArr;
+
+}
+
+
+// **** EVENT FUNCTIONS ****
+
 $("#calcButton").click(function() {
-
-	var dValues = collectDValues(sessionStorage.isDistinct, sessionStorage.sValues);
+	var dValues = collectDValues();
 	var wValues = collectWValues(); //grabs the array of weights
-	var result = 0;
 	var noError = overallChecker(wValues);
-	if (noError) {
-		for(i = 0; i < wValues.length; i++) //iterates through both arrays and multiplies them at each index
-		{
-			for(j=0; j < dValues.length; j++)
-			{
-				wValues[j] = wValues[j]/100;
-				result = result + (wValues[j] * dValues[j]);
-			}
-		}
+	if (!noError || wValues.length != dValues.length) {
+    swal("Error!", "There has been some error. Please make sure your weights are positive integers and add up to 100", "error");
+    return;
+  }
 
-    result = result.toFixed(3);
+  var index = 0;
+  var result = 0; // Store final DSQI value
+  for (index; index < dValues.length; index++) {
+      result += dValues[index] * wValues[index];
+  }
 
-    if (result > 0.25) {
-      swal("Congratuations!", "Your DSQI is " + result + "! That is higher than average!", "success");
-		}
+  result = (result / 100).toFixed(3); // Convert the dsqi value to a decimal with up to 3 decimal values
 
-		else if(result < 0.15) {
-			swal("Bummer!", "Your DSQI is " + result + ". That is lower than average.", "error");
-		}
+  if (result > 0.25) {
+    swal("Congratuations!", "Your DSQI is " + result + "! That is higher than average!", "success");
+  }
 
-		else {
-			swal("Spot on!", "Your DSQI is " + result + ". That is pretty average!", "info");
-		}
-	}
+  else if(result < 0.15) {
+    swal("Bummer!", "Your DSQI is " + result + ". That is lower than average.", "error");
+  }
+
+  else {
+    swal("Spot on!", "Your DSQI is " + result + ". That is pretty average!", "info");
+  }
 
 });
 
