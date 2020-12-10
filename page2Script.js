@@ -124,17 +124,17 @@ var wValueRules = [
           noError = false;
       }
 
-      var w1Val = parseInt(wValues[0]);
-      var w2Val = parseInt(wValues[1]);
-      var w3Val = parseInt(wValues[2]);
-      var w4Val = parseInt(wValues[3]);
-      var w5Val = parseInt(wValues[4]);
-      var w6Val = parseInt(wValues[5]);
+      var w1Val = Number(wValues[0]);
+      var w2Val = Number(wValues[1]);
+      var w3Val = Number(wValues[2]);
+      var w4Val = Number(wValues[3]);
+      var w5Val = Number(wValues[4]);
+      var w6Val = Number(wValues[5]);
 
       var total = w1Val + w2Val + w3Val + w4Val + w5Val + w6Val;
 
       if (total != 100) {
-          alert("Sum of weights must be equal to 100%");
+          swal("Error!", "The sum of the weights must be 100%!", "error");
           noError = false;
       }
 
@@ -218,25 +218,15 @@ $("#calcButton").click(function() {
 
 // ERROR HANDLING FOR WEIGHT VALUES
 
+
+
     $(".wVal").on("input", function() {
         var currID = String(($(this).attr('id')));; // Get the current id of the element
         var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
         var currVal = $("#" + currID).val();; // Save the current weight value
-
-        if (isNaN(currVal) || currVal == '') {
-          swal("Error!", "W" + currIDNumber + " must be a number!", "error");
-          boxColorChanger(currID, false);
-        }
-
         currVal = Number(currVal);
-
         if (currVal < 0) {
           swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
-          boxColorChanger(currID, false);
-        }
-
-        else if (!Number.isInteger(currVal)) {
-          swal("Error!", "W" + currIDNumber + " must be an integer!", "error");
           boxColorChanger(currID, false);
         }
 
