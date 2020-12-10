@@ -146,7 +146,7 @@ var wValueRules = [
       //   swal("Error!", "W" + currIDNumber + " must be a positive number!", "error");
       //   boxColorChanger(currID, false);
       // }
-      // 
+      //
       // currVal = Number(currVal);
       //
       // if (currVal < 0) {
@@ -225,6 +225,8 @@ $("#calcButton").click(function() {
 				result = result + (wValues[j] * dValues[j]);
 			}
 		}
+
+    result = result.toFixed(3);
 
     if (result > 0.25) {
       swal("Congratuations!", "Your DSQI is " + result + "! That is higher than average!", "success");

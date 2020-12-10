@@ -229,8 +229,13 @@ $(document).ready(function() {
 
     $("input").on("input", function(event) {
       var currID = String(($(this).attr('id'))); // Get the current id value
+      var currIDNumber = currID.substr(1, 1);
       var userValue = $("#" + currID).val(); // Get the current user value
       var isValid = !emptyChecker(userValue) && !isNaN(userValue) && parseInt(userValue) > 0; // Call the value checker functions to see if s-value is valid
+      if (Number(userValue) < 0) {
+          swal("Error!", "S" + currIDNumber + " cannot be negative!", "error");
+      }
+
       boxColorChanger(currID, isValid);
     });
 
