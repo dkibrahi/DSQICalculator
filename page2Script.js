@@ -138,6 +138,31 @@ var wValueRules = [
           noError = false;
       }
 
+      // General case for one variable. For each value (these should be strings at first), check if it is a number or is empty.
+      // If not, convert it to a number, then check if it is negative. If it isn't, make sure its a intenger.
+
+
+      // if (isNaN(currVal) || currVal == '') {
+      //   swal("Error!", "W" + currIDNumber + " must be a positive number!", "error");
+      //   boxColorChanger(currID, false);
+      // }
+      // 
+      // currVal = Number(currVal);
+      //
+      // if (currVal < 0) {
+      //   swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
+      //   boxColorChanger(currID, false);
+      // }
+      //
+      // else if (!Number.isInteger(currVal)) {
+      //   swal("Error!", "W" + currIDNumber + " must be an integer!", "error");
+      //   boxColorChanger(currID, false);
+      // }
+      //
+      // else {
+      //    boxColorChanger(currID, true);
+      // }
+
       return noError;
 
     }
