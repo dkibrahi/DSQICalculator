@@ -107,11 +107,11 @@ var wValueRules = [
 
     function boxColorChanger(wID, isValid) {
       if (!isValid) {
-        $("#" + wID).css('border-color', 'red');
+        $(wID).css('border-color', 'red');
       }
 
       else {
-        $("#" + wID).css('border-color', ""); // If the value is valid, then keep the box its regular color
+        $(wID).css('border-color', ""); // If the value is valid, then keep the box its regular color
       }
     }
 
@@ -143,22 +143,22 @@ var wValueRules = [
 
       //W1 CASE BEGINS
       if (isNaN(w1Value) || w1Value == '') {
-         swal("Error!", "W1" + " must be a positive number!", "error");
+         swal("Error!", "W1" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w1Val, false);
        }
-      
+
        currVal = Number(w1Value);
-      
+
        if (w1Value < 0) {
          swal("Error!","W1" + " cannot be negative!", "error");
          boxColorChanger(w1Val, false);
        }
-      
+
        else if (!Number.isInteger(w1Value)) {
          swal("Error!", "W1" + " must be an integer!", "error");
          boxColorChanger(w1Val, false);
        }
-      
+
        else {
           boxColorChanger(w1Val, true);
        }
@@ -170,19 +170,19 @@ var wValueRules = [
          swal("Error!", "W2" + " must be a positive number!", "error");
          boxColorChanger(w2Val, false);
        }
-      
+
        currVal = Number(w2Value);
-      
+
        if (w2Value < 0) {
          swal("Error!","W2" + " cannot be negative!", "error");
          boxColorChanger(w2Val, false);
        }
-      
+
        else if (!Number.isInteger(w2Value)) {
          swal("Error!", "W2" + " must be an integer!", "error");
          boxColorChanger(w2Val, false);
        }
-      
+
        else {
           boxColorChanger(w2Val, true);
        }
@@ -193,19 +193,19 @@ var wValueRules = [
          swal("Error!", "W3" + " must be a positive number!", "error");
          boxColorChanger(w3Val, false);
        }
-      
+
        currVal = Number(w3Value);
-      
+
        if (w3Value < 0) {
          swal("Error!","W3" + " cannot be negative!", "error");
          boxColorChanger(w3Val, false);
        }
-      
+
        else if (!Number.isInteger(w1Value)) {
          swal("Error!", "W3" + " must be an integer!", "error");
          boxColorChanger(w3Val, false);
        }
-      
+
        else {
           boxColorChanger(w3Val, true);
        }
@@ -216,19 +216,19 @@ var wValueRules = [
          swal("Error!", "W4" + " must be a positive number!", "error");
          boxColorChanger(w4Val, false);
        }
-      
+
        currVal = Number(w4Value);
-      
+
        if (w4Value < 0) {
          swal("Error!","W4" + " cannot be negative!", "error");
          boxColorChanger(w4Val, false);
        }
-      
+
        else if (!Number.isInteger(w4Value)) {
          swal("Error!", "W4" + " must be an integer!", "error");
          boxColorChanger(w4Val, false);
        }
-      
+
        else {
           boxColorChanger(w4Val, true);
        }
@@ -239,19 +239,19 @@ var wValueRules = [
          swal("Error!", "W5" + " must be a positive number!", "error");
          boxColorChanger(w5Val, false);
        }
-      
+
        currVal = Number(w5Value);
-      
+
        if (w5Value < 0) {
          swal("Error!","W5" + " cannot be negative!", "error");
          boxColorChanger(w5Val, false);
        }
-      
+
        else if (!Number.isInteger(w5Value)) {
          swal("Error!", "W5" + " must be an integer!", "error");
          boxColorChanger(w5Val, false);
        }
-      
+
        else {
           boxColorChanger(w5Val, true);
        }
@@ -262,24 +262,24 @@ var wValueRules = [
          swal("Error!", "W6" + " must be a positive number!", "error");
          boxColorChanger(w6Val, false);
        }
-      
+
        currVal = Number(w6Value);
-      
+
        if (w6Value < 0) {
          swal("Error!","W6" + " cannot be negative!", "error");
          boxColorChanger(w6Val, false);
        }
-      
+
        else if (!Number.isInteger(w6Value)) {
          swal("Error!", "W6" + " must be an integer!", "error");
          boxColorChanger(w6Val, false);
        }
-      
+
        else {
           boxColorChanger(w6Val, true);
        }
 	//W6 CASE ENDS
-	
+
       return noError;
 
     }
