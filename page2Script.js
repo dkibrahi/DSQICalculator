@@ -284,17 +284,6 @@ var wValueRules = [
 
     }
 
-
-    // Event Functions
-
-    $("#nextPageButton").click(function() {
-        // sValues = collectSValues(); // Get all the s1values from the user
-        var sValues = [];
-        sessionStorage.isDistinct = $("#d1Val").is(':checked');
-        sessionStorage.sValues = collectSValues(sValues);
-
-    });
-
 function displayDValues() {
 	var dValues = collectDValues();
 	document.getElementById("d1data").placeholder = dValues[0];
@@ -342,7 +331,62 @@ function stringToNum() {
 }
 
 
+    // Arrows for help
+
+    tippy('#d1', {
+        content: 'D1 is set to 1 if you chose the distinct method. Otherwise, it is 0',
+        placement: 'bottom',
+        animation: 'scale',
+        inertia: true,
+      });
+
+    tippy('#d2', {
+        content: 'D2 = 1 - (S2 / S1)',
+        placement: 'bottom',
+        animation: 'scale',
+        inertia: true,
+      });
+
+      tippy('#d3', {
+          content: 'D3 = 1 - (S3 / S1)',
+          placement: 'bottom',
+          animation: 'scale',
+          inertia: true,
+        });
+
+      tippy('#d4', {
+          content: 'D4 = 1 - (S5 / S4)',
+          placement: 'bottom',
+          animation: 'scale',
+          inertia: true,
+        });
+
+        tippy('#d5', {
+            content: 'D5 = 1 - (S6 / S4)',
+            placement: 'bottom',
+            animation: 'scale',
+            inertia: true,
+        });
+
+      tippy('#d6', {
+          content: 'D6 = 1 - (S7 / S1)',
+          placement: 'bottom',
+          animation: 'scale',
+          inertia: true,
+      });
+
+
+
+
 // **** EVENT FUNCTIONS ****
+
+$("#nextPageButton").click(function() {
+    // sValues = collectSValues(); // Get all the s1values from the user
+    var sValues = [];
+    sessionStorage.isDistinct = $("#d1Val").is(':checked');
+    sessionStorage.sValues = collectSValues(sValues);
+
+});
 
 $("#calcButton").click(function() {
 	var dValues = collectDValues();
