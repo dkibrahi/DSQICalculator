@@ -145,6 +145,7 @@ var wValueRules = [
       if (isNaN(w1Value) || w1Value == '') {
          swal("Error!", "W1" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w1Val, false);
+	noError = false;
        }
 
        currVal = Number(w1Value);
@@ -152,11 +153,13 @@ var wValueRules = [
        if (w1Value < 0) {
          swal("Error!","W1" + " cannot be negative!", "error");
          boxColorChanger(w1Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w1Value)) {
          swal("Error!", "W1" + " must be an integer!", "error");
          boxColorChanger(w1Val, false);
+	noError = false;
        }
 
        else {
@@ -167,8 +170,9 @@ var wValueRules = [
 
 	//W2 CASE BEGINS
       if (isNaN(w2Value) || w2Value == '') {
-         swal("Error!", "W2" + " must be a positive number!", "error");
+          swal("Error!", "W2" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w2Val, false);
+	noError = false;
        }
 
        currVal = Number(w2Value);
@@ -176,11 +180,13 @@ var wValueRules = [
        if (w2Value < 0) {
          swal("Error!","W2" + " cannot be negative!", "error");
          boxColorChanger(w2Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w2Value)) {
          swal("Error!", "W2" + " must be an integer!", "error");
          boxColorChanger(w2Val, false);
+	noError = false;
        }
 
        else {
@@ -190,8 +196,9 @@ var wValueRules = [
 
 	//W3 CASE BEGINS
       if (isNaN(w3Value) || w3Value == '') {
-         swal("Error!", "W3" + " must be a positive number!", "error");
+          swal("Error!", "W3" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w3Val, false);
+	noError = false;
        }
 
        currVal = Number(w3Value);
@@ -199,11 +206,13 @@ var wValueRules = [
        if (w3Value < 0) {
          swal("Error!","W3" + " cannot be negative!", "error");
          boxColorChanger(w3Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w1Value)) {
          swal("Error!", "W3" + " must be an integer!", "error");
          boxColorChanger(w3Val, false);
+	noError = false;
        }
 
        else {
@@ -213,8 +222,9 @@ var wValueRules = [
 
 	//W4 CASE BEGINS
       if (isNaN(w4Value) || w4Value == '') {
-         swal("Error!", "W4" + " must be a positive number!", "error");
+          swal("Error!", "W4" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w4Val, false);
+	noError = false;
        }
 
        currVal = Number(w4Value);
@@ -222,11 +232,13 @@ var wValueRules = [
        if (w4Value < 0) {
          swal("Error!","W4" + " cannot be negative!", "error");
          boxColorChanger(w4Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w4Value)) {
          swal("Error!", "W4" + " must be an integer!", "error");
          boxColorChanger(w4Val, false);
+	noError = false;
        }
 
        else {
@@ -236,8 +248,9 @@ var wValueRules = [
 
 	//W5 CASE BEGINS
       if (isNaN(w5Value) || w5Value == '') {
-         swal("Error!", "W5" + " must be a positive number!", "error");
+          swal("Error!", "W5" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w5Val, false);
+	noError = false;
        }
 
        currVal = Number(w5Value);
@@ -245,11 +258,13 @@ var wValueRules = [
        if (w5Value < 0) {
          swal("Error!","W5" + " cannot be negative!", "error");
          boxColorChanger(w5Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w5Value)) {
          swal("Error!", "W5" + " must be an integer!", "error");
          boxColorChanger(w5Val, false);
+	noError = false;
        }
 
        else {
@@ -259,8 +274,9 @@ var wValueRules = [
 
 	//W6 CASE BEGINS
       if (isNaN(w6Value) || w6Value == '') {
-         swal("Error!", "W6" + " must be a positive number!", "error");
+          swal("Error!", "W6" + " must be a positive number and cannot be empty!", "error");
          boxColorChanger(w6Val, false);
+	noError = false;
        }
 
        currVal = Number(w6Value);
@@ -268,11 +284,13 @@ var wValueRules = [
        if (w6Value < 0) {
          swal("Error!","W6" + " cannot be negative!", "error");
          boxColorChanger(w6Val, false);
+	noError = false;
        }
 
        else if (!Number.isInteger(w6Value)) {
          swal("Error!", "W6" + " must be an integer!", "error");
          boxColorChanger(w6Val, false);
+	 noError = false;
        }
 
        else {
@@ -393,9 +411,9 @@ $("#calcButton").click(function() {
 	var wValues = collectWValues(); //grabs the array of weights
 	var noError = overallChecker(wValues);
 	if (!noError || wValues.length != dValues.length) {
-    swal("Error!", "There has been some error. Please make sure your weights are positive integers and add up to 100", "error");
-    return;
-  }
+    
+    		return;
+  	}
 
   var index = 0;
   var result = 0; // Store final DSQI value
