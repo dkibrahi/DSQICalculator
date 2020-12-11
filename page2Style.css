@@ -21,17 +21,23 @@
   font-size: 2vw;
 }
 
+.column1 input {
+  margin: 2.7vw 0;
+}
+
+.column2 input {
+  margin: 3vw 0;
+}
 
 input {
-  margin: 3vw 0;
-  padding: 0.5vw 0;
+  padding: 1vw 0;
   width: 14vw;
   height: 2vw;
   text-align: center;
 }
 
 input::-webkit-input-placeholder {
-  font-size: 1.25vw;
+  font-size: 1vw;
 }
 
 .column {
@@ -45,7 +51,7 @@ input::-webkit-input-placeholder {
 
 .tippy-content {
     font-size: 1.1vw;
-    padding: 0.5vw;
+    padding: 0.3vw;
 }
 
 

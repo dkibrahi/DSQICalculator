@@ -21,7 +21,7 @@
 
 .sForm div:not(.sInformation) {
   margin: 2vw 0;
-  margin-bottom: 6vw;
+  margin-bottom: 3.5vw;
 }
 
 #titleText {
@@ -46,6 +46,7 @@
 input:not([type=checkbox]) {
   width: 14vw;
   height: 2vw;
+  text-align: center;
 }
 
 
@@ -81,6 +82,11 @@ input::-webkit-input-placeholder {
   font-size: 1.25vw;
   margin-top: 2vw;
   margin-bottom: -3vw;
+}
+
+.tippy-content {
+    font-size: 1.1vw;
+    padding: 0.5vw;
 }
 
 #s1ValInformation, #s4ValInformation, #s7ValInformation {
