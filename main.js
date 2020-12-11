@@ -138,14 +138,14 @@ $(document).ready(function() {
         var s1Val = parseInt(sValues[0]);
         var s4Val = parseInt(sValues[3]);
         for (index; index < sValues.length; index++) {
-            if ((index < 3 || index == 6) && parseInt(sValues[index]) >= s1Val) {
+            if ((index < 3 || index == 6) && parseInt(sValues[index]) > s1Val) {
               boxColorChanger("s1Val", false);
               boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
               errorList.push("S1 cannot be less than S" + (index + 1));
               console.log(errorList);
             }
 
-            else if (index >= 4 && index < 6 && parseInt(sValues[index]) >= s4Val) {
+            else if (index >= 4 && index < 6 && parseInt(sValues[index]) > s4Val) {
               boxColorChanger("s4Val", false);
               boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
               errorList.push("S4 cannot be less than S" + (index + 1));
