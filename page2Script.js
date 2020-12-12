@@ -209,7 +209,7 @@ var wValueRules = [
 	noError = false;
        }
 
-       else if (!Number.isInteger(w1Value)) {
+       else if (!Number.isInteger(w3Value)) {
          swal("Error!", "W3" + " must be an integer!", "error");
          boxColorChanger(w3Val, false);
 	noError = false;
@@ -411,7 +411,7 @@ $("#calcButton").click(function() {
 	var wValues = collectWValues(); //grabs the array of weights
 	var noError = overallChecker(wValues);
 	if (!noError || wValues.length != dValues.length) {
-    
+
     		return;
   	}
 
