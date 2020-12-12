@@ -107,9 +107,9 @@ span {
    margin-left: 5vw;
  }
 
-#backButton:visited, #calcButton:visited {
+#backPageButton:visited, #calcButton:visited {
     color: black;
-  }
+}
 
  #calcButton {
    width: 15%;

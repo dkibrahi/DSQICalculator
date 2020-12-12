@@ -303,6 +303,7 @@ $(document).ready(function() {
       $("#s5Val").attr("value", sValueArr[4]);
       $("#s6Val").attr("value", sValueArr[5]);
       $("#s7Val").attr("value", sValueArr[6]);
+      $("#d1Val").prop("checked", sessionStorage.isDistinct);
     }
 
 
