@@ -118,7 +118,6 @@ var wValueRules = [
     // Overall value checker
 
     function overallChecker(wValues) {
-      console.log(wValues);
       var currInvalid = true; // Temporary variable used to track if current w values have errors
       var isValid = true; // Bool to track if any errors were encountered
       var total = 0; // Store weight sum
@@ -145,9 +144,9 @@ var wValueRules = [
           currInvalid = false; // If the value isn't a positive number, then alert the use
         }
 
-        else if (intWVal.toString().length != currWVal.length) {
+        else if ((intWVal.toString().length != currWVal.length) || Number(currWVal) != parseInt(currWVal)) {
           swal("Error!", "W" + String(index + 1) + " can only contain digits between 0-9!", "error");
-          currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up. Compare the lengths of the two
+          currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up
         }
 
         if (!currInvalid) {
@@ -159,6 +158,7 @@ var wValueRules = [
           total += intWVal;
           boxColorChanger(wID, true); // Make that box red
         }
+
 
       }
 
