@@ -144,7 +144,7 @@ var wValueRules = [
           currInvalid = false; // If the value isn't a positive number, then alert the use
         }
 
-        else if ((intWVal.toString().length != currWVal.length) || Number(currWVal) != parseInt(currWVal)) {
+        else if ((intWVal.toString().length != currWVal.length) || Number(currWVal) != intWVal) {
           swal("Error!", "W" + String(index + 1) + " can only contain digits between 0-9!", "error");
           currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up
         }

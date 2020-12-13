@@ -263,7 +263,7 @@ $(document).ready(function() {
             errorList.push("Invalid " + sID + ". S-Values cannot be negative!");
           }
 
-          else if (intSVal.toString().length != currSVal.length) {
+          else if ((intSVal.toString().length != currSVal.length) || Number(currSVal) != intSVal) {
             currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up. Compare the lengths of the two
             errorList.push("Invalid " + sID + ". You cannot put any character other than a digit between 0-9");
           }
