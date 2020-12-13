@@ -65,7 +65,7 @@ input::-webkit-input-placeholder {
 
 .dHelp, .wHelp {
   color: white;
-  border: 1px solid black;
+  border: 0.1vw solid black;
   padding: 0.5vw;
   font-size: 1.25vw;
 }
@@ -97,7 +97,6 @@ span {
 }
 
 #backButton, #calcButton {
-   border-radius: 4px;
    border: none;
    border: 1px solid #00bfff;
    text-align: center;

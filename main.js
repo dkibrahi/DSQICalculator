@@ -42,8 +42,8 @@ $(document).ready(function() {
       ],
 
       [
-        'The distinct method will change the way the DSQI is calculated',
-        'Specficially, the distinct method will set the D1 value either to 1 or 0 on the next page',
+        'If your program uses a data-oriented or object oriented architectural design approach, then it uses the distinct method.',
+        'The distinct method box will set the D1 value (on the next page) either to 1 or 0 on the next page',
         'Checking this box means that the distinct method will be used and the D1 value will be set to 1',
         'If this box is left unchecked, then the distinct method will not be used and the D1 value will be 0'
       ]

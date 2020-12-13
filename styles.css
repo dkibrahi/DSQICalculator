@@ -60,9 +60,9 @@ input::-webkit-input-placeholder {
 
 .sHelp {
   color: white;
-  border: 1px solid black;
+  border: 0.1vw solid black;
   padding: 0.5vw;
-  font-size: 1.25vw;
+  font-size: 1.5vw;
   transition: 0.1s ease-in;
 }
 
@@ -126,7 +126,6 @@ li {
 /* Button styling */
 
 #nextPageButton {
-   border-radius: 4px;
    border: none;
    border: 1px solid #7FDBFF;
    text-align: center;

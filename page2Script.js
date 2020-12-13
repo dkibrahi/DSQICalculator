@@ -103,19 +103,19 @@ $(document).ready(function() {
       for (index; index < wValues.length; index++) {
         currInvalid = true;
         currWVal = wValues[index];
-        intWVal = parseInt(currWVal);
+        numWVal = Number(currWVal);
         wID = 'w' + String(index + 1) + 'Val';
         if (currWVal == '') {
             currInvalid = false; // If the value is empty, alert the user
             swal("Error!", "W" + String(index + 1) + " cannot be empty and must contain only positive whole numbers!", "error");
         }
 
-        else if (intWVal < 0) {
+        else if (numWVal < 0) {
           swal("Error!", "W" + String(index + 1) + " cannot be negative!", "error");
           currInvalid = false; // If the value isn't a positive number, then alert the use
         }
 
-        else if ((intWVal.toString().length != currWVal.length) || Number(currWVal) != intWVal) {
+        else if (numWVal.toString() != currWVal) {
           swal("Error!", "W" + String(index + 1) + " can only contain digits between 0-9!", "error");
           currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up
         }
@@ -126,7 +126,7 @@ $(document).ready(function() {
         }
 
         else {
-          total += intWVal;
+          total += numWVal;
           boxColorChanger(wID, true); // Make that box red
         }
 
