@@ -34,6 +34,7 @@ input {
   width: 14vw;
   height: 2vw;
   text-align: center;
+  font-size: 1vw;
 }
 
 input::-webkit-input-placeholder {
