@@ -310,7 +310,6 @@ function displayDValues() {
 	document.getElementById("d4data").placeholder = dValues[3];
 	document.getElementById("d5data").placeholder = dValues[4];
 	document.getElementById("d6data").placeholder = dValues[5];
-  console.log(dValues);
 }
 
 function collectDValues() {
