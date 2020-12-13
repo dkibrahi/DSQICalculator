@@ -131,7 +131,7 @@ $(document).ready(function() {
 
     function overallChecker(sValues, errorList) {
         if (sValues.length != 7) {
-          alert("Something went wrong.");
+          alert("Something went wrong. Refresh the page and try again");
         }
 
         var index = 1;
@@ -184,7 +184,6 @@ $(document).ready(function() {
       var sValueArr = sessionStorage.sValues.split(",");
       for (index; index < sValueArr.length; index++) {
           if (isNaN(sValueArr[index])) {
-            alert(sValueArr[index]);
             return false;
           }
       }
@@ -231,7 +230,7 @@ $(document).ready(function() {
       var currID = String(($(this).attr('id'))); // Get the current id value
       var currIDNumber = currID.substr(1, 1);
       var userValue = $("#" + currID).val(); // Get the current user value
-      var isValid = !emptyChecker(userValue) && !isNaN(userValue) && parseInt(userValue) > 0; // Call the value checker functions to see if s-value is valid
+      var isValid = (!emptyChecker(userValue) && !isNaN(userValue) && parseInt(userValue) > 0) || userValue === "0"; // Call the value checker functions to see if s-value is valid
       if (Number(userValue) < 0) {
           swal("Error!", "S" + currIDNumber + " cannot be negative!", "error");
       }
@@ -247,16 +246,25 @@ $(document).ready(function() {
         var currInvalid = false; // Will be used as a temporary variable to check if the user value is invalid
         var errorList = [];
         var sID = ""; // Current HTML ID for each s Value
+        var currSVal = 0; // store the current s value
+        var intSVal = 0; // Store the integer version of the s value
         for (index; index < sValues.length; index++) {
           currInvalid = true;
+          currSVal = sValues[index];
+          intSVal = parseInt(currSVal);
           sID = 's' + String(index + 1) + 'Val';
-          if (emptyChecker(sValues[index])) {
+          if (emptyChecker(currSVal)) {
               currInvalid = false; // If the value is empty, alert the user
               errorList.push("Invalid " + sID + ". You cannot leave values empty or put special characters");
           }
 
-          else if (isNaN(sValues[index]) || parseInt(sValues[index]) < 0 || !Number.isInteger(Number(sValues[index]))) {
-            currInvalid = false; // If the value isn't a positive whole number, then alert the use
+          else if (intSVal < 0) {
+            currInvalid = false; // If the value isn't a positive number, then alert the use
+            errorList.push("Invalid " + sID + ". S-Values cannot be negative!");
+          }
+
+          else if (intSVal.toString().length != currSVal.length) {
+            currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up. Compare the lengths of the two
             errorList.push("Invalid " + sID + ". You cannot put any character other than a digit between 0-9");
           }
 
@@ -264,6 +272,7 @@ $(document).ready(function() {
             currInvalid = false;
             errorList.push("Invalid " + sID + ". " + sID + " values need to be greater than 0!");
           }
+
 
           if (!currInvalid) {
             boxColorChanger(sID, false); // Make that box red
