@@ -145,12 +145,12 @@ $(document).ready(function() {
 
 function displayDValues() {
 	var dValues = collectDValues();
-	document.getElementById("d1data").placeholder = dValues[0];
-	document.getElementById("d2data").placeholder = dValues[1];
-	document.getElementById("d3data").placeholder = dValues[2];
-	document.getElementById("d4data").placeholder = dValues[3];
-	document.getElementById("d5data").placeholder = dValues[4];
-	document.getElementById("d6data").placeholder = dValues[5];
+	document.getElementById("d1data").placeholder = dValues[0].toFixed(3);
+	document.getElementById("d2data").placeholder = dValues[1].toFixed(3);
+	document.getElementById("d3data").placeholder = dValues[2].toFixed(3);
+	document.getElementById("d4data").placeholder = dValues[3].toFixed(3);
+	document.getElementById("d5data").placeholder = dValues[4].toFixed(3);
+	document.getElementById("d6data").placeholder = dValues[5].toFixed(3);
 }
 
 function collectDValues() {
