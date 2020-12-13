@@ -107,7 +107,7 @@ $(document).ready(function() {
         wID = 'w' + String(index + 1) + 'Val';
         if (currWVal == '') {
             currInvalid = false; // If the value is empty, alert the user
-            swal("Error!", "W" + String(index + 1) + " cannot be empty and must contain only positive whole numbers!", "error");
+            swal("Error!", "W" + String(index + 1) + " cannot be empty and must only numbers between 0 and 100!", "error");
         }
 
         else if (numWVal < 0) {
