@@ -6,35 +6,6 @@ $(document).ready(function() {
   }
 
 
-var wValueRules = [
-      [
-        'W1 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-      [
-        'W2 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-      [
-        'W3 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-      [
-        'W4 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-      [
-        'W5 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-      [
-        'W6 cannot be a negative number or 0',
-        'Sum of weights must equal 100%'
-      ],
-
-    ]; // Store rules that each s value must abide by
-
-
     // ***** FUNCTIONS *****
 
     /// Function that is used to find which of the sValue buttons the user clicked
