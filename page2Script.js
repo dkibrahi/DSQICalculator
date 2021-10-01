@@ -8,34 +8,6 @@ $(document).ready(function() {
 
     // ***** FUNCTIONS *****
 
-    /// Function that is used to find which of the sValue buttons the user clicked
-    function findWValue(wID) {
-      if (wID == 'w1') {
-        return ['w1Val', 0]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w2') {
-        return ['w2Val', 1]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w3') {
-        return ['w3Val', 2]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w4') {
-        return ['w4Val', 3]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w5') {
-        return ['w5Val', 4]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w6') {
-        return ['w6Val', 5]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-    }
-
     // Function that is used to collect all the user inputted s values
 
     function collectWValues() {
