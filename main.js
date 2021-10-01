@@ -55,16 +55,38 @@ $(document).ready(function() {
     /// Function that is used to find which of the sValue buttons the user clicked
 
     function findSValue(sID) {
-      var idArr = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
-
-      for (var idx = 0; idx < idArr.length; idx++) {
-        if (sID == idArr[idx]) {
-          var newId = sID + 'Val';
-          return [newId, idx]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
-        }
+      if (sID == 's1') {
+        return ['s1Val', 0]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
       }
-      
-      return ['d1Val', 7]; // otherwise, the d-button was clicked
+
+      else if (sID == 's2') {
+        return ['s2Val', 1]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else if (sID == 's3') {
+        return ['s3Val', 2]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else if (sID == 's4') {
+        return ['s4Val', 3]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else if (sID == 's5') {
+        return ['s5Val', 4]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else if (sID == 's6') {
+        return ['s6Val', 5]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else if (sID == 's7') {
+        return ['s7Val', 6]; // Return the id where the html will be appeneded to and where to get the information from the s-value rules
+      }
+
+      else {
+        return ['d1Val', 7];
+      }
+
     }
 
     // Function that is used to collect all the user inputted s values
@@ -127,9 +149,11 @@ $(document).ready(function() {
               boxColorChanger("s" + (index + 1) + "Val", false); // If s2, s3, or s7 are less than s1, make their box red
               errorList.push("S4 cannot be less than S" + (index + 1));
             }
+
         }
 
         return errorList;
+
     }
 
     // Function that is used to show the user all their errors
