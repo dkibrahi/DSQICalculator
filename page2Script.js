@@ -8,34 +8,6 @@ $(document).ready(function() {
 
     // ***** FUNCTIONS *****
 
-    /// Function that is used to find which of the sValue buttons the user clicked
-    function findWValue(wID) {
-      if (wID == 'w1') {
-        return ['w1Val', 0]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w2') {
-        return ['w2Val', 1]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w3') {
-        return ['w3Val', 2]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w4') {
-        return ['w4Val', 3]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w5') {
-        return ['w5Val', 4]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-      else if (wID == 'w6') {
-        return ['w6Val', 5]; // Return the id where the html will be appeneded to and where to get the information from the w-value rules
-      }
-
-    }
-
     // Function that is used to collect all the user inputted s values
 
     function collectWValues() {
@@ -59,19 +31,6 @@ $(document).ready(function() {
         var s6Value = $("#s6Val").val();
         var s7Value = $("#s7Val").val();
         return [s1Value, s2Value, s3Value, s4Value, s5Value, s6Value, s7Value];
-    }
-
-    // Function that makes sure no empty user values are passed
-
-    function emptyChecker(currVal) {
-      if (!currVal) {
-        return true; // If the value that is passed in is invalid or empty, return false right away
-      }
-
-      else {
-        return false;
-      }
-
     }
 
     // Change color of box if it isn't valid
@@ -239,11 +198,9 @@ function stringToNum() {
 // **** EVENT FUNCTIONS ****
 
 $("#nextPageButton").click(function() {
-    // sValues = collectSValues(); // Get all the s1values from the user
     var sValues = [];
     sessionStorage.isDistinct = $("#d1Val").is(':checked');
     sessionStorage.sValues = collectSValues(sValues);
-
 });
 
 $("#calcButton").click(function() {
