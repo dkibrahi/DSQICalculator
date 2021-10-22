@@ -180,25 +180,35 @@
   // Event Functions
 
   $(".sHelp").click(function() {
+    var currID = $(this).attr('id') + 'ValInformation'; // find id of s-box that was clicked
+    var openBoxID = $(".sInformation:visible").attr('id');
+
+    $('.sInformation').remove();
+
+    console.log(currID, openBoxID);
+
+    if (openBoxID != undefined && openBoxID == currID) {
+      return;
+    }
+
+    var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
+    var sInfo = findSValue(backgroundID); // Find what the id of the new modal should be called
+
+    var sID = sInfo[0]; // Get new value HTML should be appended to
+    var messageNumber = sInfo[1]; // Get the index value to access the appripriate message in the sValueRules arrary
+
+    $("#" + sID).after("<div class = 'sInformation' id = '" + sID + "Information'></div>");
+    $("#" + sID + "Information").append("<div id = 'close'>+</div><br><br>");
+    $("#" + sID + "Information").append("<ul id = '" + sID + "UL'></ul>");
+
+    var index = 0;
+    for (index; index < sValueRules[messageNumber].length; index++) {
+        $("#" + sID + "UL").append("<li>" + sValueRules[messageNumber][index] + "</li>"); // Output all the rules for that s value
+    }
+
+    $("#close").click(function() {
       $('.sInformation').remove();
-      var backgroundID = String(($(this).attr('id'))); // Get the specific id for the s-value
-      var sInfo = findSValue(backgroundID); // Find what the id of the new modal should be called
-
-      var sID = sInfo[0]; // Get new value HTML should be appended to
-      var messageNumber = sInfo[1]; // Get the index value to access the appripriate message in the sValueRules arrary
-
-      $("#" + sID).after("<div class = 'sInformation' id = '" + sID + "Information'></div>");
-      $("#" + sID + "Information").append("<div id = 'close'>+</div><br><br>");
-      $("#" + sID + "Information").append("<ul id = '" + sID + "UL'></ul>");
-
-      var index = 0;
-      for (index; index < sValueRules[messageNumber].length; index++) {
-          $("#" + sID + "UL").append("<li>" + sValueRules[messageNumber][index] + "</li>"); // Output all the rules for that s value
-      }
-
-      $("#close").click(function() {
-        $('.sInformation').remove();
-      });
+    });
 
   });
 

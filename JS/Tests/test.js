@@ -1,4 +1,4 @@
-import { findSValue, emptyChecker } from './main.js'
+import { findSValue, emptyChecker } from '../Code/main.js'
 
 // run tests 
 
