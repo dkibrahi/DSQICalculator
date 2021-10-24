@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 .main {
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -77,22 +76,12 @@ span {
 
 /* Close button functionality */
 
-#close {
-  position: absolute;
-  top: 0;
-  right: 5px;
-  transform: rotate(45deg);
-}
-
-#close:hover {
-  cursor: pointer;
-}
 
 .buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2vw;
+    margin-bottom: 1vw;
     color: black;
 }
 
@@ -147,3 +136,4 @@ span {
    opacity: 1;
    right: 0;
  }
+
