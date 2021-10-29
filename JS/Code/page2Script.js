@@ -58,7 +58,6 @@ $(document).ready(function() {
 
       var index = 0;
       var currWVal = 0; // store the current w value
-      var intWVal = 0; // Store the integer version of the w value
       for (index; index < wValues.length; index++) {
         currInvalid = true;
         currWVal = wValues[index];
@@ -200,16 +199,18 @@ function stringToNum() {
 $("#nextPageButton").click(function() {
     var sValues = [];
     sessionStorage.isDistinct = $("#d1Val").is(':checked');
-    sessionStorage.sValues = collectSValues(sValues);
+    sessionStorage.sValues = collectSValues();
 });
 
 $("#calcButton").click(function() {
-	var dValues = collectDValues();
-	var wValues = collectWValues(); //grabs the array of weights
-	var noError = overallChecker(wValues);
-	if (!noError || wValues.length != dValues.length) {
-    		return;
-  	}
+  var dValues = collectDValues();
+  var wValues = collectWValues(); //grabs the array of weights
+  var noError = overallChecker(wValues);
+  if (!noError || wValues.length != dValues.length) {
+        return;
+    }
+
+  sessionStorage.wVals = wValues;
 
   var index = 0;
   var result = 0; // Store final DSQI value
@@ -234,23 +235,31 @@ $("#calcButton").click(function() {
 });
 
 // ERROR HANDLING FOR WEIGHT VALUES
+  $(".wVal").on("input", function() {
+      var currID = String(($(this).attr('id')));; // Get the current id of the element
+      var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
+      var currVal = $("#" + currID).val();; // Save the current weight value
+      currVal = Number(currVal);
+      if (currVal < 0) {
+        swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
+        boxColorChanger(currID, false);
+      }
+
+      else {
+        boxColorChanger(currID, true);
+      }
+
+  });
 
 
-
-    $(".wVal").on("input", function() {
-        var currID = String(($(this).attr('id')));; // Get the current id of the element
-        var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
-        var currVal = $("#" + currID).val();; // Save the current weight value
-        currVal = Number(currVal);
-        if (currVal < 0) {
-          swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
-          boxColorChanger(currID, false);
-        }
-
-        else {
-           boxColorChanger(currID, true);
-        }
-
-    });
-
+  if (sessionStorage.wVals) {
+    var wValueArr = sessionStorage.wVals.split(",");
+    $("#w1Val").attr("value", wValueArr[0]);
+    $("#w2Val").attr("value", wValueArr[1]);
+    $("#w3Val").attr("value", wValueArr[2]);
+    $("#w4Val").attr("value", wValueArr[3]);
+    $("#w5Val").attr("value", wValueArr[4]);
+    $("#w6Val").attr("value", wValueArr[5]);
+  }
+  
 });
