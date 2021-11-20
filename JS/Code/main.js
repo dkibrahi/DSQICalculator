@@ -52,7 +52,14 @@
 
   // ***** FUNCTIONS *****
 
-  /// Function that is used to find which of the sValue buttons the user clicked
+  // Function that is used to reset any current values in the form 
+
+  $("#resetButton").click(function() {
+    sessionStorage.clear();
+    location.reload();
+  })
+
+  // Function that is used to find which of the sValue buttons the user clicked
 
   var findSValue = function(sID) {
     var idArr = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];

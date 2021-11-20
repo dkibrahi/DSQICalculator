@@ -8,6 +8,13 @@ $(document).ready(function() {
 
     // ***** FUNCTIONS *****
 
+    // Function that is used to reset any the values only on this page 
+
+    $("#resetButton").click(function() {
+      sessionStorage.wVals = ""; // set w vals to empty 
+      location.reload();
+    })
+
     // Function that is used to collect all the user inputted s values
 
     function collectWValues() {
