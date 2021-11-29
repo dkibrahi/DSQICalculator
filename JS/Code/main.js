@@ -90,14 +90,7 @@
   // Function that makes sure no empty user values are passed
 
   function emptyChecker(currVal) {
-    if (!currVal) {
-      return true; // If the value that is passed in is invalid or empty, return true right away
-    }
-
-    else {
-      return false;
-    }
-
+    return !currVal;
   }
 
   // Change color of box if it isn't valid
@@ -164,7 +157,7 @@
     }
 
     var index = 0;
-    var sValueArr = sessionStorage.sValues.split(",");
+    sValueArr = sessionStorage.sValues.split(",");
     for (index; index < sValueArr.length; index++) {
         if (isNaN(sValueArr[index])) {
           return false;
