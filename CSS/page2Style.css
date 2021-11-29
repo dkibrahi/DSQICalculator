@@ -76,6 +76,16 @@ span {
 
 /* Close button functionality */
 
+#resetButton {
+   border: 1px solid #7FDBFF;
+   text-align: center;
+   font-size: 1vw;
+   padding: 0.5vw;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 0.5vw 0;
+}
+
 
 .buttons {
     display: flex;
@@ -96,7 +106,7 @@ span {
    margin-left: 5vw;
  }
 
-#backPageButton:visited, #calcButton:visited {
+#backPageButton:visited, #calcButton:visited, #resetButton:visited {
     color: black;
 }
 
@@ -104,7 +114,7 @@ span {
    width: 15%;
  }
 
- #backButton span, #calcButton span {
+ #backButton span, #calcButton span, #resetButton span {
    cursor: pointer;
    display: inline-block;
    position: relative;
@@ -112,12 +122,13 @@ span {
    background-color: white;
  }
 
- #backButton:hover, #calcButton:hover {
+ #backButton:hover, #calcButton:hover, #resetButton:hover {
    background-color: black;
+   color: white;
  }
 
 
- #backButton span:after, #calcButton span:after {
+ #backButton span:after, #calcButton span:after, #resetButton span:after {
    position: absolute;
    opacity: 0;
    top: 0;
@@ -125,14 +136,14 @@ span {
    transition: 0.5s;
  }
 
-#backButton:hover span, #calcButton:hover span {
+#backButton:hover span, #calcButton:hover span, #resetButton:hover span {
    background-color: black;
    padding: 0 0.2vw;
    color: #00bfff;
  }
 
 
-#backButton:hover span:after, #calcButton:hover span:after {
+#backButton:hover span:after, #calcButton:hover span:after, #resetButton:hover span:after {
    opacity: 1;
    right: 0;
  }

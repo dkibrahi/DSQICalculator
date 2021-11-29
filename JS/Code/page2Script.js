@@ -58,6 +58,9 @@ $(document).ready(function() {
       var currInvalid = true; // Temporary variable used to track if current w values have errors
       var isValid = true; // Bool to track if any errors were encountered
       var total = 0; // Store weight sum
+      var numWVal = 0; // convert w val to a number
+      var wID = ""; // keep track of the ID val for each weight
+
       if (wValues.length != 6) {
           alert("Something went wrong. Please go back to the main page and try again.");
           isValid = false;
@@ -204,7 +207,6 @@ function stringToNum() {
 // **** EVENT FUNCTIONS ****
 
 $("#nextPageButton").click(function() {
-    var sValues = [];
     sessionStorage.isDistinct = $("#d1Val").is(':checked');
     sessionStorage.sValues = collectSValues();
 });
@@ -243,9 +245,9 @@ $("#calcButton").click(function() {
 
 // ERROR HANDLING FOR WEIGHT VALUES
   $(".wVal").on("input", function() {
-      var currID = String(($(this).attr('id')));; // Get the current id of the element
+      var currID = String(($(this).attr('id'))); // Get the current id of the element
       var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
-      var currVal = $("#" + currID).val();; // Save the current weight value
+      var currVal = $("#" + currID).val(); // Save the current weight value
       currVal = Number(currVal);
       if (currVal < 0) {
         swal("Error!","W" + currIDNumber + " cannot be negative!", "error");

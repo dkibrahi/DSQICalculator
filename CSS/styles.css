@@ -126,7 +126,6 @@ li {
 /* Button styling */
 
 #nextPageButton {
-   border: none;
    border: 1px solid #7FDBFF;
    text-align: center;
    font-size: 1.5vw;
@@ -137,23 +136,33 @@ li {
 
  }
 
- #nextPageButton:visited {
+ #resetButton {
+   border: 1px solid #7FDBFF;
+   text-align: center;
+   font-size: 1vw;
+   padding: 0.5vw;
+   transition: all 0.4s;
+   cursor: pointer;
+   margin: 0.5vw 0;
+}
+
+ #nextPageButton:visited, #resetButton:visited {
     color: black;
   }
 
- #nextPageButton span {
+ #nextPageButton span, #resetButton span{
    cursor: pointer;
    display: inline-block;
    position: relative;
    transition: 0.4s;
  }
 
- #nextPageButton:hover {
+ #nextPageButton:hover, #resetButton:hover {
    background-color: black;
-   color: #7FDBFF;
+   color: white;
  }
 
- #nextPageButton span:after {
+ #nextPageButton span:after, #resetButton span:after {
    content: '\00bb';
    position: absolute;
    opacity: 0;
@@ -163,12 +172,12 @@ li {
    color: #7FDBFF;
  }
 
-#nextPageButton:hover span {
+#nextPageButton:hover span, #resetButton:hover span {
    padding-right: 1.5vw;
    color: #7FDBFF;
  }
 
-#nextPageButton:hover span:after {
+#nextPageButton:hover span:after, #resetButton:hover span:after {
    opacity: 1;
    right: 0;
    color: #7FDBFF;
