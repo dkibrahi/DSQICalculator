@@ -25,12 +25,16 @@ var checkArray = function(actual, expected) {
     console.log("Passed");
 }
 
+// test if correct s-value name and index in s-rules array is foudn
+
 var findSValueTest1 = function() {
     var functionResult = findSValue('s3');
     var expectedResult = ['s3Val', 2];
 
     checkArray(functionResult, expectedResult);
 }
+
+// edge case where d-value needs to be returned 
 
 var findSValueTest2 = function() {
     var functionResult = findSValue('d3');
@@ -40,7 +44,7 @@ var findSValueTest2 = function() {
 }
 
 
-// Testing the empty checker 
+// test to make sure non-empty values aren't counted as empty 
 
 var emptyTest1 = function() {
     var actual = emptyChecker('abc');
@@ -54,6 +58,8 @@ var emptyTest1 = function() {
     }
 
 }
+
+// test to make sure empty values are picked up
 
 var emptyTest2 = function() {
     var actual = emptyChecker('');

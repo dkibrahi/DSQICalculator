@@ -113,7 +113,7 @@ $(document).ready(function() {
 
 function displayDValues() {
 	var dValues = collectDValues();
-	document.getElementById("d1data").placeholder = dValues[0].toFixed(3);
+	document.getElementById("d1data").placeholder = dValues[0].toFixed(3); // grab d-value and set to 3 decimal places
 	document.getElementById("d2data").placeholder = dValues[1].toFixed(3);
 	document.getElementById("d3data").placeholder = dValues[2].toFixed(3);
 	document.getElementById("d4data").placeholder = dValues[3].toFixed(3);
