@@ -1,3 +1,5 @@
+import { collectSValues, boxColorChanger } from '../Code/functions.js'
+
 $(document).ready(function() {
   var path = window.location.pathname;
   var page = path.split("/").pop();
@@ -6,110 +8,86 @@ $(document).ready(function() {
   }
 
 
-    // ***** FUNCTIONS *****
+  // ***** FUNCTIONS *****
 
-    // Function that is used to reset any the values only on this page 
+  // Function that is used to reset any the values only on this page 
 
-    $("#resetButton").click(function() {
-      sessionStorage.wVals = ""; // set w vals to empty 
-      location.reload();
-    })
+  $("#resetButton").click(function() {
+    sessionStorage.wVals = ""; // set w vals to empty 
+    location.reload();
+  })
 
-    // Function that is used to collect all the user inputted s values
+  // Function that is used to collect all the user inputted s values
 
-    function collectWValues() {
-        var w1Value = $("#w1Val").val();
-        var w2Value = $("#w2Val").val();
-        var w3Value = $("#w3Val").val();
-        var w4Value = $("#w4Val").val();
-        var w5Value = $("#w5Val").val();
-        var w6Value = $("#w6Val").val();
-        return [w1Value, w2Value, w3Value, w4Value, w5Value, w6Value];
+  function collectWValues() {
+      var w1Value = $("#w1Val").val();
+      var w2Value = $("#w2Val").val();
+      var w3Value = $("#w3Val").val();
+      var w4Value = $("#w4Val").val();
+      var w5Value = $("#w5Val").val();
+      var w6Value = $("#w6Val").val();
+      return [w1Value, w2Value, w3Value, w4Value, w5Value, w6Value];
+  }
+
+
+  // Overall value checker
+
+  function overallChecker(wValues) {
+    var currInvalid = true; // Temporary variable used to track if current w values have errors
+    var isValid = true; // Bool to track if any errors were encountered
+    var total = 0; // Store weight sum
+    var numWVal = 0; // convert w val to a number
+    var wID = ""; // keep track of the ID val for each weight
+
+    if (wValues.length != 6) {
+        alert("Something went wrong. Please go back to the main page and try again.");
+        isValid = false;
     }
 
+    var index = 0;
+    var currWVal = 0; // store the current w value
+    for (index; index < wValues.length; index++) {
+      currInvalid = true;
+      currWVal = wValues[index];
+      numWVal = Number(currWVal);
+      wID = 'w' + String(index + 1) + 'Val';
+      if (currWVal == '') {
+          currInvalid = false; // If the value is empty, alert the user
+          swal("Error!", "W" + String(index + 1) + " cannot be empty and must only numbers between 0 and 100!", "error");
+      }
 
-    // Function that is used to collect all the user inputted s values
-    function collectSValues() {
-        var s1Value = $("#s1Val").val();
-        var s2Value = $("#s2Val").val();
-        var s3Value = $("#s3Val").val();
-        var s4Value = $("#s4Val").val();
-        var s5Value = $("#s5Val").val();
-        var s6Value = $("#s6Val").val();
-        var s7Value = $("#s7Val").val();
-        return [s1Value, s2Value, s3Value, s4Value, s5Value, s6Value, s7Value];
-    }
+      else if (numWVal < 0) {
+        swal("Error!", "W" + String(index + 1) + " cannot be negative!", "error");
+        currInvalid = false; // If the value isn't a positive number, then alert the use
+      }
 
-    // Change color of box if it isn't valid
+      else if (numWVal.toString() != currWVal) {
+        swal("Error!", "W" + String(index + 1) + " can only contain digits between 0-9!", "error");
+        currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up
+      }
 
-    function boxColorChanger(wID, isValid) {
-      if (!isValid) {
-        $('#' + wID).css('border-color', 'red');
+      if (!currInvalid) {
+        boxColorChanger(wID, false); // Make that box red
+        isValid = false;
       }
 
       else {
-        $('#' + wID).css('border-color', ""); // If the value is valid, then keep the box its regular color
+        total += numWVal;
+        boxColorChanger(wID, true); // Make that box red
       }
+
+
     }
 
-    // Overall value checker
 
-    function overallChecker(wValues) {
-      var currInvalid = true; // Temporary variable used to track if current w values have errors
-      var isValid = true; // Bool to track if any errors were encountered
-      var total = 0; // Store weight sum
-      var numWVal = 0; // convert w val to a number
-      var wID = ""; // keep track of the ID val for each weight
-
-      if (wValues.length != 6) {
-          alert("Something went wrong. Please go back to the main page and try again.");
-          isValid = false;
-      }
-
-      var index = 0;
-      var currWVal = 0; // store the current w value
-      for (index; index < wValues.length; index++) {
-        currInvalid = true;
-        currWVal = wValues[index];
-        numWVal = Number(currWVal);
-        wID = 'w' + String(index + 1) + 'Val';
-        if (currWVal == '') {
-            currInvalid = false; // If the value is empty, alert the user
-            swal("Error!", "W" + String(index + 1) + " cannot be empty and must only numbers between 0 and 100!", "error");
-        }
-
-        else if (numWVal < 0) {
-          swal("Error!", "W" + String(index + 1) + " cannot be negative!", "error");
-          currInvalid = false; // If the value isn't a positive number, then alert the use
-        }
-
-        else if (numWVal.toString() != currWVal) {
-          swal("Error!", "W" + String(index + 1) + " can only contain digits between 0-9!", "error");
-          currInvalid = false; // If the value contains any special characters, then when it is converted to an integer it will get picked up
-        }
-
-        if (!currInvalid) {
-          boxColorChanger(wID, false); // Make that box red
-          isValid = false;
-        }
-
-        else {
-          total += numWVal;
-          boxColorChanger(wID, true); // Make that box red
-        }
-
-
-      }
-
-
-      if (isValid && total != 100) {
-          swal("Error!", "The sum of the weights must be 100%!", "error");
-          isValid = false;
-      }
-
-      return isValid;
-
+    if (isValid && total != 100) {
+        swal("Error!", "The sum of the weights must be 100%!", "error");
+        isValid = false;
     }
+
+    return isValid;
+
+  }
 
 function displayDValues() {
 	var dValues = collectDValues();
@@ -156,51 +134,49 @@ function stringToNum() {
 
 }
 
+// Arrows for help boxes
 
-    // Arrows for help
+tippy('#d1', {
+    content: 'D1 is set to 1 if you chose the distinct method. Otherwise, it is 0',
+    placement: 'bottom',
+    animation: 'scale',
+    inertia: true,
+  });
 
-    tippy('#d1', {
-        content: 'D1 is set to 1 if you chose the distinct method. Otherwise, it is 0',
+tippy('#d2', {
+    content: 'D2 = 1 - (S2 / S1)',
+    placement: 'bottom',
+    animation: 'scale',
+    inertia: true,
+  });
+
+  tippy('#d3', {
+      content: 'D3 = 1 - (S3 / S1)',
+      placement: 'bottom',
+      animation: 'scale',
+      inertia: true,
+    });
+
+  tippy('#d4', {
+      content: 'D4 = 1 - (S5 / S4)',
+      placement: 'bottom',
+      animation: 'scale',
+      inertia: true,
+    });
+
+    tippy('#d5', {
+        content: 'D5 = 1 - (S6 / S4)',
         placement: 'bottom',
         animation: 'scale',
         inertia: true,
-      });
+    });
 
-    tippy('#d2', {
-        content: 'D2 = 1 - (S2 / S1)',
-        placement: 'bottom',
-        animation: 'scale',
-        inertia: true,
-      });
-
-      tippy('#d3', {
-          content: 'D3 = 1 - (S3 / S1)',
-          placement: 'bottom',
-          animation: 'scale',
-          inertia: true,
-        });
-
-      tippy('#d4', {
-          content: 'D4 = 1 - (S5 / S4)',
-          placement: 'bottom',
-          animation: 'scale',
-          inertia: true,
-        });
-
-        tippy('#d5', {
-            content: 'D5 = 1 - (S6 / S4)',
-            placement: 'bottom',
-            animation: 'scale',
-            inertia: true,
-        });
-
-      tippy('#d6', {
-          content: 'D6 = 1 - (S7 / S1)',
-          placement: 'bottom',
-          animation: 'scale',
-          inertia: true,
-      });
-
+  tippy('#d6', {
+      content: 'D6 = 1 - (S7 / S1)',
+      placement: 'bottom',
+      animation: 'scale',
+      inertia: true,
+  });
 
 
 
@@ -244,31 +220,31 @@ $("#calcButton").click(function() {
 });
 
 // ERROR HANDLING FOR WEIGHT VALUES
-  $(".wVal").on("input", function() {
-      var currID = String(($(this).attr('id'))); // Get the current id of the element
-      var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
-      var currVal = $("#" + currID).val(); // Save the current weight value
-      currVal = Number(currVal);
-      if (currVal < 0) {
-        swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
-        boxColorChanger(currID, false);
-      }
+$(".wVal").on("input", function() {
+    var currID = String(($(this).attr('id'))); // Get the current id of the element
+    var currIDNumber = currID.substr(1, 1); // Get the specific number next to the W in wVal
+    var currVal = $("#" + currID).val(); // Save the current weight value
+    currVal = Number(currVal);
+    if (currVal < 0) {
+      swal("Error!","W" + currIDNumber + " cannot be negative!", "error");
+      boxColorChanger(currID, false);
+    }
 
-      else {
-        boxColorChanger(currID, true);
-      }
+    else {
+      boxColorChanger(currID, true);
+    }
 
-  });
+});
 
 
-  if (sessionStorage.wVals) {
-    var wValueArr = sessionStorage.wVals.split(",");
-    $("#w1Val").attr("value", wValueArr[0]);
-    $("#w2Val").attr("value", wValueArr[1]);
-    $("#w3Val").attr("value", wValueArr[2]);
-    $("#w4Val").attr("value", wValueArr[3]);
-    $("#w5Val").attr("value", wValueArr[4]);
-    $("#w6Val").attr("value", wValueArr[5]);
-  }
-  
+if (sessionStorage.wVals) {
+  var wValueArr = sessionStorage.wVals.split(",");
+  $("#w1Val").attr("value", wValueArr[0]);
+  $("#w2Val").attr("value", wValueArr[1]);
+  $("#w3Val").attr("value", wValueArr[2]);
+  $("#w4Val").attr("value", wValueArr[3]);
+  $("#w5Val").attr("value", wValueArr[4]);
+  $("#w6Val").attr("value", wValueArr[5]);
+}
+
 });
