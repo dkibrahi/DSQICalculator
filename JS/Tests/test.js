@@ -1,4 +1,5 @@
 import { findSValue, emptyChecker } from '../Code/main.js'
+import { overallChecker } from '../Code/functions.js'
 
 // run tests 
 
@@ -7,6 +8,9 @@ var main = function() {
     findSValueTest2();
     emptyTest1();
     emptyTest2();
+    //noNegativeWValuesTest();
+    //sumSmallerThan100Test();
+    //sumLargerThan100Test();
 }
 
 // Testing the finding of s-values 
@@ -74,6 +78,56 @@ var emptyTest2 = function() {
 
 }
 
+// test to make sure negative w-values aren't accepted (only use during testing, not during live dev)
+
+var noNegativeWValuesTest = function() {
+    var testArr = ['-10', '10', '100', '0', '0', '0'];
+
+    var expected = false;
+    var actual = overallChecker(testArr);
+
+    if (actual != expected) {
+        alert("FAILED! noNegativeWValuesTest! This should return false, but didn't!");
+    }
+
+    else {
+        console.log("Passed");  
+    }
+}
+
+// test to make sure sums smaller than 100 aren't accepted (only use during testing, not during live dev)
+
+var sumSmallerThan100Test = function() {
+    var testArr = ['0', '0', '99', '0.1', '0', '0'];
+
+    var expected = false;
+    var actual = overallChecker(testArr);
+
+    if (actual != expected) {
+        alert("FAILED! sumSmallerThan100Test! This should return false, but didn't!");
+    }
+
+    else {
+        console.log("Passed");  
+    }
+}
+
+// test to make sure sums larger than 100 aren't accepted (only use during testing, not during live dev)
+
+var sumLargerThan100Test = function() {
+    var testArr = ['0', '0', '100', '0.1', '0', '0'];
+
+    var expected = false;
+    var actual = overallChecker(testArr);
+
+    if (actual != expected) {
+        alert("FAILED! sumLargerThan100Test! This should return false, but didn't!");
+    }
+
+    else {
+        console.log("Passed");  
+    }
+}
 
 main();
 
