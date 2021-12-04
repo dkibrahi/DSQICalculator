@@ -212,12 +212,13 @@ $("#nextPageButton").click(function(event) {
 });
 
 var ls = sessionStorage.getItem('namespace.visited');
+var sValueArr = [];
 if (ls == null) {
   sessionStorage.setItem('namespace.visited', 1)
 }
 
 else if (sValueChecker()) {
-  var sValueArr = sessionStorage.sValues.split(",");
+  sValueArr = sessionStorage.sValues.split(",");
   $("#s1Val").attr("value", sValueArr[0]);
   $("#s2Val").attr("value", sValueArr[1]);
   $("#s3Val").attr("value", sValueArr[2]);
