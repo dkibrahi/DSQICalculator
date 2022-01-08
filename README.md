@@ -1,2 +1,2 @@
 # DSQICalulator
-Calculate DSQI
+Old version of DSQI calculator
